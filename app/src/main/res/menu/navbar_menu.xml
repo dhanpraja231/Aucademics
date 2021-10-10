@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/custom_subject"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Add Custom subject" />
+    <item
+        android:id="@+id/clear_subject"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="Clear subject" />
+    <item
+        android:id="@+id/wipe_data"
+        android:icon="@android:drawable/ic_dialog_alert"
+        android:title="Wipe all data" />
+    <item
+        android:id="@+id/help_nav"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Help" />
+    <item
+        android:id="@+id/playstore_redirect"
+        android:icon="@android:drawable/btn_star"
+        android:title="Rate our app" />
+</menu>
