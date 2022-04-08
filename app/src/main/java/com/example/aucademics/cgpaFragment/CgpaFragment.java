@@ -12,7 +12,7 @@ import com.example.aucademics.R;
 
 public class CgpaFragment extends Fragment {
     RecyclerView rvBunkList;
-    public View onCreateViewHolder(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.cgpa_fragment,container,false);
         return root;
     }

@@ -74,27 +74,58 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
 
         db.close();
     }
-    public void incrementSubject(){
-        //TODO: BM:implmemnt increment by update
+    public void incrementSubject(int id){
+        //TODO:where clause not working for both fetch and update
+        SQLiteDatabase db = this.getWritableDatabase();
+        id++;
+        Cursor c = db.rawQuery("SELECT "+BunkEntries.COLUMN_TOTAL_HOURS+", "+BunkEntries.COLUMN_BUNKED_HOURS+", "+BunkEntries.COLUMN_BUNKS_LEFT+ " FROM "+BunkEntries.TABLE_NAME+ " WHERE _id = "+"'"+String.valueOf(id)+"'",null);
+        c.moveToNext();
+        Integer oldTotalHours =Integer.parseInt(c.getString(0));
+        Integer oldBunkCount =Integer.parseInt(c.getString(1));
+        Integer oldBunksLeft =Integer.parseInt(c.getString(2));
+        ContentValues cv = new ContentValues();
+        cv.put("Bunked_hours",oldBunkCount+1);
+        cv.put("Bunks_left",oldBunksLeft-1);
+        float attendancePercent = (float)((oldTotalHours-oldBunkCount)/(float)(oldTotalHours))*100.0f;
+        cv.put("Attendance_percent",attendancePercent);
+        db.update(BunkEntries.TABLE_NAME, cv, "_id=?", new String[]{String.valueOf(id)});
+        c.close();
         return;
     }
-    public void editSubject(){
-        //TODO: BM:implmemnt edit Subject by update
-        return;
+    public void decrementSubject(int id){
+        //TODO:where clause not working for both fetch and update
+        SQLiteDatabase db = this.getWritableDatabase();
+        id++;
+        Cursor c = db.rawQuery("SELECT "+BunkEntries.COLUMN_TOTAL_HOURS+", "+BunkEntries.COLUMN_BUNKED_HOURS+", "+BunkEntries.COLUMN_BUNKS_LEFT+ " FROM "+BunkEntries.TABLE_NAME+ " WHERE _id = "+"'"+id+"'",null);
+        c.moveToNext();
+        Integer oldTotalHours =Integer.parseInt(c.getString(0));
+        Integer oldBunkCount =Integer.parseInt(c.getString(1));
+        Integer oldBunksLeft =Integer.parseInt(c.getString(2));
+        c.close();
+        if(oldBunkCount-1 >= 0) {
+            ContentValues cv = new ContentValues();
+            cv.put("Bunked_hours", oldBunkCount - 1);
+            cv.put("Bunks_left", oldBunksLeft + 1);
+            float attendancePercent = (float) ((oldTotalHours - oldBunkCount) / (float) (oldTotalHours)) * 100.0f;
+            cv.put("Attendance_percent", attendancePercent);
+            db.update(BunkEntries.TABLE_NAME, cv, "_id=?", new String[]{String.valueOf(id)});
+            return;
+        }
     }
     public void clearSubject(){
         //TODO: BM:implmemnt clearSubject by delete
         return;
     }
     public ArrayList<BunkItem> getAllSubjects(){
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+BunkEntries.TABLE_NAME;
         Cursor c = db.rawQuery(query,null);
         ArrayList<BunkItem> result = new ArrayList<>();
-        do {
+        while(c.moveToNext()){
             result.add(new BunkItem(c.getString(1),c.getString(2),c.getString(3)));
-
-        }while(c.moveToNext());
+        }
+        System.out.println("GATE "+result);
+        db.close();
         return result;
     }
 
@@ -104,6 +135,10 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
     public void close(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.close();
+    }
+
+    public void upgrade(){
+        onUpgrade(this.getReadableDatabase(),1,1);
     }
 
 

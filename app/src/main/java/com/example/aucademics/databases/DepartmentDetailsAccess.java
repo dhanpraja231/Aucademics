@@ -14,8 +14,7 @@ public class DepartmentDetailsAccess {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase db;
     private static DepartmentDetailsAccess instance;
-    Cursor c =null;
-    Cursor deptCode = null;
+
 
     private DepartmentDetailsAccess(Context context){
         this.openHelper = new DepartmentDetailsOpenHelper(context);
@@ -40,11 +39,11 @@ public class DepartmentDetailsAccess {
     //initial table creation
     public ArrayList<BunkItem> getSubjectsForBunk(String userRegulations, String userDepartment, String userSemester) {
         int userSemester1 = Integer.parseInt(String.valueOf(userSemester.charAt(userSemester.length()-1)));
-        c = db.rawQuery("select subject_name,credits,no_of_hours from '"+userDepartment +"' where sem_offered" +
+        Cursor c1 = db.rawQuery("select subject_name,no_of_hours from '"+userDepartment +"' where sem_offered" +
                 " = '"+userSemester1 +"'",new String[]{});
         ArrayList<BunkItem> result = new ArrayList<>(10);
-        while(c.moveToNext()){
-            result.add(new BunkItem(c.getString(0),c.getString(1),c.getString(2)));
+        while(c1.moveToNext()){
+            result.add(new BunkItem(c1.getString(0),c1.getString(1)));
         }
         return result;
     }

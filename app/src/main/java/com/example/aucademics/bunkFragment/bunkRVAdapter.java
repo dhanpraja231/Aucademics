@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.aucademics.R;
+import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,18 +38,40 @@ public class bunkRVAdapter extends RecyclerView.Adapter<bunkRVAdapter.bunkViewHo
             mBunksLeft = itemView.findViewById(R.id.bunk_rv_bunks_left);
             mBunksDone = itemView.findViewById(R.id.bunk_rv_bunks_done);
             mAttendance = itemView.findViewById(R.id.bunk_rv_attendance);
-            bEdit = itemView.findViewById(R.id.bunk_holder_edit_button);
+            bEdit = itemView.findViewById(R.id.bunk_holder_del_button);
             bIncrement = itemView.findViewById(R.id.bunk_holder_increment_button);
 
             itemView.findViewById(R.id.bunk_holder_increment_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    BunkManagerDBHelper db = new BunkManagerDBHelper(itemView.getContext(),1);
+                    int _id = getAdapterPosition();
+                    db.incrementSubject(_id);
+                    dataList = db.getAllSubjects();
+                    notifyDataSetChanged();
+                    db.close();
+
+                    //TODO: increment button
+                }
+            });
+            itemView.findViewById(R.id.bunk_holder_decrement_button).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    BunkManagerDBHelper db = new BunkManagerDBHelper(itemView.getContext(),1);
+                    int _id = getAdapterPosition();
+
+                    db.decrementSubject(_id);
+                    dataList = db.getAllSubjects();
+                    notifyDataSetChanged();
+                    db.close();
+
                     //TODO: increment button
                 }
             });
 
 
-            itemView.findViewById(R.id.bunk_holder_edit_button).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.bunk_holder_del_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //TODO:pop alert

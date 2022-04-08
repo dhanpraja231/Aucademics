@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import com.example.aucademics.R;
 import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 //2)implement navbar
 //3)create shared tables
@@ -35,7 +37,7 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
     SharedPreferences.Editor tokenSPEditor;
 
     TabLayout tabLayout;
-    ViewPager viewPager;
+    ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +59,11 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
         tabLayout.addTab(tabLayout.newTab().setText("Bunk manager"));
         tabLayout.addTab(tabLayout.newTab().setText("CGPA"));
 
-        HomepageFragmentAdapter adapter = new HomepageFragmentAdapter(getSupportFragmentManager(),this,tabLayout.getTabCount());
+        HomepageFragmentAdapter adapter = new HomepageFragmentAdapter(this);
         viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        String[] titles = new String[]{"Bunk manager","CGPA"};
+        new TabLayoutMediator(tabLayout,viewPager,((tab,position) -> tab.setText(titles[position]))).attach();
+
 
 
     }
@@ -106,13 +110,72 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 //Enter subject name, credits, hours
                 //press confirm -> add to private SQLlite and display in recycler view
                 break;
-            case R.id.clear_subject:
-                //pop up
-                //display subject names from SQLlite with dropdown list/spinner
-                //select subject, click confirm checkbox and enter
-                //remove SQLlite data row
-                //reinstate display loop for recycler view
+            case R.id.prev_semester:
+                AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+                alert2.setTitle("CONFIRM OPTION");
+                alert2.setMessage("This will clear all current bunk data, data will not be recoverable");
+                CheckBox cBoxConfirm2 = new CheckBox(this);
+                cBoxConfirm2.setText("Confirm Action");
+
+                alert2.setView(cBoxConfirm2);
+                alert2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if(cBoxConfirm2.isChecked()){
+                            tokenSP = PreferenceManager.getDefaultSharedPreferences(bunkNcgpa.this);
+                            tokenSPEditor = tokenSP.edit();
+                            tokenSPEditor.putBoolean("token",false);
+                            tokenSPEditor.commit();
+                            //TODO clear SQLlite and make new bunk table and notify dataset
+                            finish();
+                            //startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
+                        }
+                        else{
+                            Toast.makeText(bunkNcgpa.this,"Check CONFIRM",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                alert2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                    }
+                });
+                alert2.show();
                 break;
+
+            case R.id.next_semester:
+                AlertDialog.Builder alert3 = new AlertDialog.Builder(this);
+                alert3.setTitle("CONFIRM OPTION");
+                alert3.setMessage("This will clear all current bunk data, data will not be recoverable");
+                CheckBox cBoxConfirm3 = new CheckBox(this);
+                cBoxConfirm3.setText("Confirm Action");
+
+                alert3.setView(cBoxConfirm3);
+                alert3.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        if(cBoxConfirm3.isChecked()){
+                            tokenSP = PreferenceManager.getDefaultSharedPreferences(bunkNcgpa.this);
+                            tokenSPEditor = tokenSP.edit();
+//                            tokenSPEditor.putBoolean("token",false);
+//                            tokenSPEditor.commit();
+                            //TODO clear SQLlite and make new bunk table and notify dataset
+                            finish();
+                            //startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
+                        }
+                        else{
+                            Toast.makeText(bunkNcgpa.this,"Check CONFIRM",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                alert3.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                    }
+                });
+                alert3.show();
+                break;
+
             case R.id.playstore_redirect:
                 //redirect to playstore app via explicit intent
                 break;

@@ -18,10 +18,11 @@ import java.util.ArrayList;
 
 public class BunkFragment extends Fragment {
     RecyclerView rvBunkList;
-    BunkManagerDBHelper db = new BunkManagerDBHelper(this.getContext());
-    public View onCreateViewHolder(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.bunk_fragment, container, false);
         rvBunkList = root.findViewById(R.id.rv_bunk_list);
+        BunkManagerDBHelper db = new BunkManagerDBHelper(this.getContext(),"userBunkDB",null,1);
         ArrayList<BunkItem> data = db.getAllSubjects();
         System.out.println("Datalist ="+ data);
         bunkRVAdapter rvListAdapter = new bunkRVAdapter(data);

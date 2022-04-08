@@ -19,18 +19,18 @@ public class BunkItem {
                 '}';
     }
 
-    public BunkItem(String subject_name1, int totalHours1, int bunkedHours1){
+    public BunkItem(String subject_name1, String totalHours1){
         subject_name = subject_name1;
-        totalHours = totalHours1;
-        bunkedHours = bunkedHours1;
+        totalHours = Integer.parseInt(totalHours1);
+        bunkedHours = 0;
         bunkHoursLeft = totalHours/4 - bunkedHours;
-        attendancePercent = (float)(totalHours-bunkedHours)/(float)bunkedHours;
+        attendancePercent = (float)(totalHours-bunkedHours)/(float)totalHours*100.0f;
     }
 
     public BunkItem(String subject_name, String totalHours,String bunkedHours) {
         this.subject_name = subject_name;
         this.totalHours = Integer.parseInt(totalHours);
-        this.bunkedHours =Integer.parseInt(bunkedHours);
+        this.bunkedHours = Integer.parseInt(bunkedHours);
         bunkHoursLeft = this.totalHours/4 - this.bunkedHours;
         attendancePercent = ((float)(this.totalHours-this.bunkedHours)/(float)this.totalHours)*100.0f;
     }
@@ -59,5 +59,15 @@ public class BunkItem {
         return attendancePercent;
     }
 
+    public void setBunkedHours(int bunkedHours) {
+        this.bunkedHours = bunkedHours;
+    }
 
+    public void setBunkHoursLeft(int bunkHoursLeft) {
+        this.bunkHoursLeft = bunkHoursLeft;
+    }
+
+    public void setAttendancePercent(float attendancePercent) {
+        this.attendancePercent = attendancePercent;
+    }
 }

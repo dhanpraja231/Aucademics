@@ -22,8 +22,8 @@
         <!--Text View to display Course Name-->
         <TextView
             android:id="@+id/bunk_rv_subject_name"
-            android:layout_width="200sp"
-            android:layout_height="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
@@ -39,12 +39,24 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bunk_holder_increment_button"
             android:layout_width="60sp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="308dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="35dp"
+            android:textSize="30dp"
             android:text="+" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bunk_holder_decrement_button"
+            android:layout_width="60sp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="238dp"
+            android:layout_marginTop="35dp"
+            android:textSize="30dp"
+            android:text="-" />
 
 
         <TextView
@@ -100,17 +112,19 @@
             android:layout_marginTop="76dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bunk_holder_edit_button"
+            android:id="@+id/bunk_holder_del_button"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="96dp"
-            android:layout_marginEnd="286dp"
-            android:text="Edit"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="98dp"
+            android:layout_marginEnd="287dp"
+            android:layout_marginBottom="5dp"
             android:background="@color/white"
-            android:textColor="@android:color/holo_blue_dark"/>
+            android:text="Delete"
+            android:textColor="@android:color/holo_blue_dark" />
 
     </RelativeLayout>
 
