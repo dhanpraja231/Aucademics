@@ -1,6 +1,6 @@
-package com.example.aucademics;
+package com.example.aucademics.bunkFragment;
 
-public class BunkList {
+public class BunkItem {
     private String subject_name;
     private int credits;
     private int totalHours;
@@ -12,7 +12,6 @@ public class BunkList {
     public String toString() {
         return "BunkList{" +
                 "subject_name='" + subject_name +
-                ", credits=" + credits +
                 ", totalHours=" + totalHours +
                 ", bunkedHours=" + bunkedHours +
                 ", bunkHoursLeft=" + bunkHoursLeft +
@@ -20,13 +19,20 @@ public class BunkList {
                 '}';
     }
 
-    public BunkList(String subject_name1, int credits1, int totalHours1, int bunkedHours1){
+    public BunkItem(String subject_name1, int totalHours1, int bunkedHours1){
         subject_name = subject_name1;
-        credits = credits1;
         totalHours = totalHours1;
         bunkedHours = bunkedHours1;
         bunkHoursLeft = totalHours/4 - bunkedHours;
         attendancePercent = (float)(totalHours-bunkedHours)/(float)bunkedHours;
+    }
+
+    public BunkItem(String subject_name, String totalHours,String bunkedHours) {
+        this.subject_name = subject_name;
+        this.totalHours = Integer.parseInt(totalHours);
+        this.bunkedHours =Integer.parseInt(bunkedHours);
+        bunkHoursLeft = this.totalHours/4 - this.bunkedHours;
+        attendancePercent = ((float)(this.totalHours-this.bunkedHours)/(float)this.totalHours)*100.0f;
     }
 
     public String getSubject_name() {

@@ -1,38 +1,46 @@
-package com.example.aucademics;
+package com.example.aucademics.homePage;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.aucademics.R;
+import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 //2)implement navbar
 //3)create shared tables
 //4)create FAQ page
 
-public class BunkManager extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar navToolBar;
     SharedPreferences tokenSP;
     SharedPreferences.Editor tokenSPEditor;
+
+    TabLayout tabLayout;
+    ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bunk_manager);
+        setContentView(R.layout.homepage);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_Bar);
         navToolBar = findViewById(R.id.tool_bar);
@@ -43,6 +51,17 @@ public class BunkManager extends AppCompatActivity implements NavigationView.OnN
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+        tabLayout = findViewById(R.id.login_tab_layout);
+        viewPager = findViewById(R.id.login_viewPager);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Bunk manager"));
+        tabLayout.addTab(tabLayout.newTab().setText("CGPA"));
+
+        HomepageFragmentAdapter adapter = new HomepageFragmentAdapter(getSupportFragmentManager(),this,tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
     }
 
     @Override
@@ -60,16 +79,16 @@ public class BunkManager extends AppCompatActivity implements NavigationView.OnN
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                     if(cBoxConfirm.isChecked()){
-                        tokenSP = PreferenceManager.getDefaultSharedPreferences(BunkManager.this);
+                        tokenSP = PreferenceManager.getDefaultSharedPreferences(bunkNcgpa.this);
                         tokenSPEditor = tokenSP.edit();
                         tokenSPEditor.putBoolean("token",false);
                         tokenSPEditor.commit();
                         //TODO clear SQLlite
                         finish();
-                        startActivity(new Intent(BunkManager.this,EnterDetails.class));
+                        startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
                     }
                     else{
-                        Toast.makeText(BunkManager.this,"Check CONFIRM",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(bunkNcgpa.this,"Check CONFIRM",Toast.LENGTH_SHORT).show();
                     }
                     }
                 });
@@ -82,7 +101,7 @@ public class BunkManager extends AppCompatActivity implements NavigationView.OnN
                 alert.show();
                 break;
             case R.id.custom_subject:
-                startActivity(new Intent(BunkManager.this,AddCustomSubject.class));
+                startActivity(new Intent(bunkNcgpa.this, AddCustomSubject.class));
                 //show activity
                 //Enter subject name, credits, hours
                 //press confirm -> add to private SQLlite and display in recycler view

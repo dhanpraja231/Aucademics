@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aucademics">
-        <activity android:name=".AddCustomSubject"></activity>
-        <activity android:name=".BunkManager" />
-        <activity android:name=".EnterDetails">
+        <activity android:name=".homePage.AddCustomSubject"></activity>
+        <activity android:name=".homePage.bunkNcgpa" />
+        <activity android:name=".homePage.EnterDetails">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

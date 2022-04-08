@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BunkManager"
+    tools:context=".homePage.bunkNcgpa"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -36,19 +36,32 @@
             app:layout_constraintTop_toTopOf="parent"
              />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Subject List"
-            android:textSize="30sp"
-            android:textAlignment="center"
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/login_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01"/>
+            app:layout_constraintVertical_bias="0.0" />
 
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/login_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="670sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
+        </androidx.viewpager.widget.ViewPager>
 
 
 

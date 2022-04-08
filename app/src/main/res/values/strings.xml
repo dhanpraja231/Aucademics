@@ -14,11 +14,11 @@
         <item>Semester 8</item>
     </string-array>
     <string-array name="department">
-        <item>ECE</item>
-        <item>IT</item>
-        <item>Civil</item>
-        <item>Mechanical</item>
-        <item>Other</item>
+        <item>DECE</item>
+        <item>DIST</item>
+        <item>DEEE</item>
+        <item>DME</item>
+        <item>DCSE</item>
     </string-array>
     <string name="app_name">Aucademics</string>
 </resources>
