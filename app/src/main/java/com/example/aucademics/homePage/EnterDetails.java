@@ -64,7 +64,7 @@ public class EnterDetails extends AppCompatActivity {
         departmentGet = findViewById(R.id.s_department);
         regulationGet = findViewById(R.id.s_regulations);
         BunkManagerDBHelper db = new BunkManagerDBHelper(EnterDetails.this,"userBunkDB",null,1);
-        db.open();
+        db.close();
         submitDetails.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -83,13 +83,13 @@ public class EnterDetails extends AppCompatActivity {
                 DepartmentDetailsAccess detailsAccess = DepartmentDetailsAccess.getInstance(getBaseContext());
                 detailsAccess.open();
                 bunkItemArrayList = detailsAccess.getSubjectsForBunk(userRegulation,userDepartment,userSemester);
-                //detailsAccess.close();
+                detailsAccess.close();
                 System.out.println("list: "+bunkItemArrayList);
                 BunkManagerDBHelper db = new BunkManagerDBHelper(EnterDetails.this,"userBunkDB",null,1);
                 db.upgrade();
                 db.initialize(bunkItemArrayList);
                 db.close();
-                db.open();
+                //db.open();
 
                 startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
                 finish();

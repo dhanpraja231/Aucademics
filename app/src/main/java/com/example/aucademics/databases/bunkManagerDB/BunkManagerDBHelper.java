@@ -90,6 +90,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         cv.put("Attendance_percent",attendancePercent);
         db.update(BunkEntries.TABLE_NAME, cv, "_id=?", new String[]{String.valueOf(id)});
         c.close();
+        db.close();
         return;
     }
     public void decrementSubject(int id){
@@ -111,6 +112,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
             db.update(BunkEntries.TABLE_NAME, cv, "_id=?", new String[]{String.valueOf(id)});
             return;
         }
+        db.close();
     }
     public void clearSubject(){
         //TODO: BM:implmemnt clearSubject by delete

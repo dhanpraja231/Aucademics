@@ -45,6 +45,7 @@ public class DepartmentDetailsAccess {
         while(c1.moveToNext()){
             result.add(new BunkItem(c1.getString(0),c1.getString(1)));
         }
+        c1.close();
         return result;
     }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -20,10 +21,15 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.example.aucademics.R;
+import com.example.aucademics.bunkFragment.BunkItem;
+import com.example.aucademics.bunkFragment.bunkRVAdapter;
+import com.example.aucademics.databases.DepartmentDetailsAccess;
 import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
 
 //2)implement navbar
 //3)create shared tables
@@ -122,12 +128,37 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if(cBoxConfirm2.isChecked()){
                             tokenSP = PreferenceManager.getDefaultSharedPreferences(bunkNcgpa.this);
-                            tokenSPEditor = tokenSP.edit();
-                            tokenSPEditor.putBoolean("token",false);
-                            tokenSPEditor.commit();
-                            //TODO clear SQLlite and make new bunk table and notify dataset
-                            finish();
-                            //startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
+                            ArrayList<BunkItem> newDataList;
+
+                            String userRegulation = tokenSP.getString("regulations","none");
+                            String userDepartment = tokenSP.getString("department","none");
+                            String userSemTemp = tokenSP.getString("semester","2");
+                            String userSemester = String.valueOf(Integer.parseInt(userSemTemp.substring(userSemTemp.length() - 1))-1);
+                            if(Integer.parseInt(userSemester)>0) {
+                                DepartmentDetailsAccess detailsAccess = DepartmentDetailsAccess.getInstance(getBaseContext());
+                                detailsAccess.open();
+                                newDataList = detailsAccess.getSubjectsForBunk(userRegulation, userDepartment, userSemester);
+                                detailsAccess.close();
+
+                                tokenSPEditor = tokenSP.edit();
+                                tokenSPEditor.putString("semester",userSemester);
+                                tokenSPEditor.commit();
+
+                                BunkManagerDBHelper db = new BunkManagerDBHelper(bunkNcgpa.this);
+                                db.upgrade();
+                                db.initialize(newDataList);
+                                db.close();
+
+
+
+
+                                //TODO fix recycler view
+                                finish();
+                                startActivity(new Intent(bunkNcgpa.this, bunkNcgpa.class));
+                            }
+                            else{
+                                Toast.makeText(bunkNcgpa.this,"illegal semester data",Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else{
                             Toast.makeText(bunkNcgpa.this,"Check CONFIRM",Toast.LENGTH_SHORT).show();
@@ -155,12 +186,38 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if(cBoxConfirm3.isChecked()){
                             tokenSP = PreferenceManager.getDefaultSharedPreferences(bunkNcgpa.this);
-                            tokenSPEditor = tokenSP.edit();
-//                            tokenSPEditor.putBoolean("token",false);
-//                            tokenSPEditor.commit();
-                            //TODO clear SQLlite and make new bunk table and notify dataset
-                            finish();
-                            //startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
+                            ArrayList<BunkItem> newDataList;
+
+                            String userRegulation = tokenSP.getString("regulations","none");
+                            String userDepartment = tokenSP.getString("department","none");
+                            String userSemTemp = tokenSP.getString("semester","2");
+                            System.out.println("user semTemp= " +userSemTemp.substring(userSemTemp.length() - 1));
+                            String userSemester = String.valueOf(Integer.parseInt(userSemTemp.substring(userSemTemp.length() - 1))+1);
+                            System.out.println("user semester "+userSemester);
+                            if(Integer.parseInt(userSemester)<=6) {
+                                DepartmentDetailsAccess detailsAccess = DepartmentDetailsAccess.getInstance(getBaseContext());
+                                detailsAccess.open();
+                                newDataList = detailsAccess.getSubjectsForBunk(userRegulation, userDepartment, userSemester);
+                                detailsAccess.close();
+
+                                tokenSPEditor = tokenSP.edit();
+                                String putString = "semester "+userSemester;
+                                tokenSPEditor.putString("semester",putString);
+                                tokenSPEditor.commit();
+
+                                BunkManagerDBHelper db = new BunkManagerDBHelper(bunkNcgpa.this);
+                                db.upgrade();
+                                db.initialize(newDataList);
+                                db.close();
+
+                                //TODO fix recycler view
+                                //maybe relaunch the app
+                                finish();
+                                startActivity(new Intent(bunkNcgpa.this, bunkNcgpa.class));
+                            }
+                            else{
+                                Toast.makeText(bunkNcgpa.this,"illegal semester data",Toast.LENGTH_SHORT).show();
+                            }
                         }
                         else{
                             Toast.makeText(bunkNcgpa.this,"Check CONFIRM",Toast.LENGTH_SHORT).show();
