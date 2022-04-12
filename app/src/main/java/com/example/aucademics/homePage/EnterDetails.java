@@ -11,7 +11,9 @@ import android.widget.Spinner;
 
 import com.example.aucademics.R;
 import com.example.aucademics.bunkFragment.BunkItem;
-import com.example.aucademics.databases.DepartmentDetailsAccess;
+import com.example.aucademics.cgpaFragment.gpaItem;
+import com.example.aucademics.databases.CGPA_DB.BigBadCGPATableDBHelper;
+import com.example.aucademics.databases.DepartmentResourceDatabase.DepartmentDetailsAccess;
 import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class EnterDetails extends AppCompatActivity {
     SharedPreferences tokenSP;
     SharedPreferences.Editor tokenSPEditor;
     ArrayList<BunkItem> bunkItemArrayList;
+    ArrayList<gpaItem> gpaItemArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class EnterDetails extends AppCompatActivity {
         departmentGet = findViewById(R.id.s_department);
         semesterGet = findViewById(R.id.s_semester);
         submitDetails = findViewById(R.id.submit_details);
-        startBlank = findViewById(R.id.start_blank);
+        //startBlank = findViewById(R.id.start_blank);
         tokenSP = PreferenceManager.getDefaultSharedPreferences(this);
         tokenSPEditor = tokenSP.edit();
         tokenSPEditor.putBoolean("token",false);
@@ -48,18 +51,18 @@ public class EnterDetails extends AppCompatActivity {
 //            startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
 //        }
 
-        startBlank.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                tokenSPEditor = tokenSP.edit();
-                tokenSPEditor.putBoolean("token",true);
-                tokenSPEditor.commit();
-                startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
-                finish();
-            }
-        });
+//        startBlank.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                tokenSPEditor = tokenSP.edit();
+//                tokenSPEditor.putBoolean("token",true);
+//                tokenSPEditor.commit();
+//                startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
+//                finish();
+//            }
+//        });
         semesterGet = findViewById(R.id.s_semester);
         departmentGet = findViewById(R.id.s_department);
         regulationGet = findViewById(R.id.s_regulations);
@@ -83,12 +86,18 @@ public class EnterDetails extends AppCompatActivity {
                 DepartmentDetailsAccess detailsAccess = DepartmentDetailsAccess.getInstance(getBaseContext());
                 detailsAccess.open();
                 bunkItemArrayList = detailsAccess.getSubjectsForBunk(userRegulation,userDepartment,userSemester);
+                gpaItemArrayList = detailsAccess.getSubjectsForBigBadTable(userRegulation,userDepartment,userSemester);
                 detailsAccess.close();
                 System.out.println("list: "+bunkItemArrayList);
                 BunkManagerDBHelper db = new BunkManagerDBHelper(EnterDetails.this,"userBunkDB",null,1);
                 db.upgrade();
                 db.initialize(bunkItemArrayList);
                 db.close();
+                BigBadCGPATableDBHelper db2 = new BigBadCGPATableDBHelper(EnterDetails.this);
+                db2.deleteTable();
+                System.out.println("gpa item array list in enter details: "+ gpaItemArrayList);
+                db2.initialize(gpaItemArrayList);
+                db2.close();
                 //db.open();
 
                 startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));

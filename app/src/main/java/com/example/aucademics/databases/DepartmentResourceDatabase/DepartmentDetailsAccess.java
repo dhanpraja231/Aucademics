@@ -1,12 +1,12 @@
-package com.example.aucademics.databases;
+package com.example.aucademics.databases.DepartmentResourceDatabase;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Spinner;
 
 import com.example.aucademics.bunkFragment.BunkItem;
+import com.example.aucademics.cgpaFragment.gpaItem;
 
 import java.util.ArrayList;
 
@@ -44,6 +44,17 @@ public class DepartmentDetailsAccess {
         ArrayList<BunkItem> result = new ArrayList<>(10);
         while(c1.moveToNext()){
             result.add(new BunkItem(c1.getString(0),c1.getString(1)));
+        }
+        c1.close();
+        return result;
+    }
+
+    public ArrayList<gpaItem> getSubjectsForBigBadTable(String userRegulations, String userDepartment, String userSemester){
+        int userSemester1 = Integer.parseInt(String.valueOf(userSemester.charAt(userSemester.length()-1)));
+        Cursor c1 = db.rawQuery("select subject_name,subject_code,credits,sem_offered from '"+userDepartment+"'",new String[]{});
+        ArrayList<gpaItem> result = new ArrayList<>(10);
+        while(c1.moveToNext()){
+            result.add(new gpaItem(c1.getString(0),c1.getString(1),Integer.parseInt(c1.getString(2)),Integer.parseInt(c1.getString(3))));
         }
         c1.close();
         return result;

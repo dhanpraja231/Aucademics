@@ -9,15 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aucademics">
-        <activity android:name=".homePage.AddCustomSubject"></activity>
+        <activity
+            android:name=".cgpaFragment.SelectGpaActivity"
+            android:exported="false" />
+        <activity android:name=".homePage.AddCustomSubject" />
         <activity android:name=".homePage.bunkNcgpa" />
         <activity android:name=".homePage.EnterDetails">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

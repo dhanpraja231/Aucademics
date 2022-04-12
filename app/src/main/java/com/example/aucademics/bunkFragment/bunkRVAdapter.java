@@ -38,7 +38,6 @@ public class bunkRVAdapter extends RecyclerView.Adapter<bunkRVAdapter.bunkViewHo
             mBunksLeft = itemView.findViewById(R.id.bunk_rv_bunks_left);
             mBunksDone = itemView.findViewById(R.id.bunk_rv_bunks_done);
             mAttendance = itemView.findViewById(R.id.bunk_rv_attendance);
-            bEdit = itemView.findViewById(R.id.bunk_holder_del_button);
             bIncrement = itemView.findViewById(R.id.bunk_holder_increment_button);
 
             itemView.findViewById(R.id.bunk_holder_increment_button).setOnClickListener(new View.OnClickListener() {
@@ -51,7 +50,6 @@ public class bunkRVAdapter extends RecyclerView.Adapter<bunkRVAdapter.bunkViewHo
                     notifyDataSetChanged();
                     db.close();
 
-                    //TODO: increment button
                 }
             });
             itemView.findViewById(R.id.bunk_holder_decrement_button).setOnClickListener(new View.OnClickListener() {
@@ -65,16 +63,6 @@ public class bunkRVAdapter extends RecyclerView.Adapter<bunkRVAdapter.bunkViewHo
                     dataList = db.getAllSubjects();
                     notifyDataSetChanged();
                     db.close();
-
-                    //TODO: increment button
-                }
-            });
-
-
-            itemView.findViewById(R.id.bunk_holder_del_button).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //TODO:pop alert
                 }
             });
 

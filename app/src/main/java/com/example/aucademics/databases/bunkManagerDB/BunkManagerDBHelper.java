@@ -63,7 +63,6 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
     }
     public void addSubject(BunkItem i){
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues cv = new ContentValues();
         cv.put(BunkEntries.COLUMN_SUBJECT,i.getSubject_name());
         cv.put(BunkEntries.COLUMN_TOTAL_HOURS,i.getTotalHours());
@@ -75,7 +74,6 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         db.close();
     }
     public void incrementSubject(int id){
-        //TODO:where clause not working for both fetch and update
         SQLiteDatabase db = this.getWritableDatabase();
         id++;
         Cursor c = db.rawQuery("SELECT "+BunkEntries.COLUMN_TOTAL_HOURS+", "+BunkEntries.COLUMN_BUNKED_HOURS+", "+BunkEntries.COLUMN_BUNKS_LEFT+ " FROM "+BunkEntries.TABLE_NAME+ " WHERE _id = "+"'"+String.valueOf(id)+"'",null);
@@ -94,7 +92,6 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         return;
     }
     public void decrementSubject(int id){
-        //TODO:where clause not working for both fetch and update
         SQLiteDatabase db = this.getWritableDatabase();
         id++;
         Cursor c = db.rawQuery("SELECT "+BunkEntries.COLUMN_TOTAL_HOURS+", "+BunkEntries.COLUMN_BUNKED_HOURS+", "+BunkEntries.COLUMN_BUNKS_LEFT+ " FROM "+BunkEntries.TABLE_NAME+ " WHERE _id = "+"'"+id+"'",null);
@@ -114,10 +111,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         }
         db.close();
     }
-    public void clearSubject(){
-        //TODO: BM:implmemnt clearSubject by delete
-        return;
-    }
+
     public ArrayList<BunkItem> getAllSubjects(){
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM "+BunkEntries.TABLE_NAME;
@@ -128,6 +122,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         }
         System.out.println("GATE "+result);
         db.close();
+        c.close();
         return result;
     }
 

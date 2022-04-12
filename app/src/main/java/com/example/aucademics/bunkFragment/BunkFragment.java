@@ -1,6 +1,5 @@
 package com.example.aucademics.bunkFragment;
 
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aucademics.R;
-import com.example.aucademics.databases.DepartmentDetailsOpenHelper;
 import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
 
 import java.util.ArrayList;

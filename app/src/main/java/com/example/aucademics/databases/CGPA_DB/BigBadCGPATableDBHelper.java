@@ -1,0 +1,93 @@
+package com.example.aucademics.databases.CGPA_DB;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+import com.example.aucademics.bunkFragment.BunkEntries;
+import com.example.aucademics.bunkFragment.BunkItem;
+import com.example.aucademics.cgpaFragment.BigBadCgpaEntries;
+import com.example.aucademics.cgpaFragment.gpaItem;
+
+import java.util.ArrayList;
+
+public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
+    SQLiteDatabase db = this.getWritableDatabase();
+
+    public BigBadCGPATableDBHelper(@Nullable Context context) {
+        super(context, "bigBadCGPATable", null, 1);
+    }
+
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        final String tableString = "CREATE TABLE "+
+                BigBadCgpaEntries.TABLE_NAME +" (" +
+                BigBadCgpaEntries._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                BigBadCgpaEntries.COLUMN_SUBJECT + " TEXT NOT NULL, "+
+                BigBadCgpaEntries.COLUMN_SUBJECT_CODE + " TEXT NOT NULL, "+
+                BigBadCgpaEntries.COLUMN_CREDITS +" INTEGER NOT NULL, "+
+                BigBadCgpaEntries.COLUMN_GRADE + " INTEGER, "+
+                BigBadCgpaEntries.COLUMN_SEMESTER + " INTEGER NOT NULL"+
+                ");";
+        db.execSQL(tableString);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + BigBadCgpaEntries.TABLE_NAME);
+        onCreate(db);
+    }
+
+    public void initialize(ArrayList<gpaItem> ar){
+        SQLiteDatabase db = this.getWritableDatabase();
+        System.out.println("data list in bidbaghelperclass "+ ar);
+        for(gpaItem i: ar){
+            ContentValues cv = new ContentValues();
+            cv.put(BigBadCgpaEntries.COLUMN_SUBJECT,i.getSubjectName());
+            cv.put(BigBadCgpaEntries.COLUMN_SUBJECT_CODE,i.getSubjectCode());
+            cv.put(BigBadCgpaEntries.COLUMN_CREDITS,i.getCredits());
+            cv.put(BigBadCgpaEntries.COLUMN_GRADE,i.getGradeAchieved());
+            cv.put(BigBadCgpaEntries.COLUMN_SEMESTER,String.valueOf(i.getSemOffered()));
+            db.insert(BigBadCgpaEntries.TABLE_NAME,null,cv);
+        }
+        db.close();
+    }
+
+    public ArrayList<gpaItem> getSubjectsOf(Integer semester){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<gpaItem> result = new ArrayList<>();
+
+        String query = "SELECT * FROM "+BigBadCgpaEntries.TABLE_NAME+" WHERE "+ BigBadCgpaEntries.COLUMN_SEMESTER+" = "+semester;
+        Cursor c = db.rawQuery(query,null);
+        while(c.moveToNext()){
+            if(c.getString(4)!=null){
+            result.add(new gpaItem(c.getString(1),c.getString(2),Integer.parseInt(c.getString(3)),Integer.parseInt(c.getString(4)),Integer.parseInt(c.getString(5))));}
+            else{
+
+                result.add(new gpaItem(c.getString(1),c.getString(2),Integer.parseInt(c.getString(3)),Integer.parseInt(c.getString(5))));
+            }
+        }
+        System.out.println("result set from get semester data:  "+result);
+        //db.close();
+        c.close();
+
+        return result;
+    }
+
+    public void deleteTable(){
+        db.execSQL("DROP TABLE IF EXISTS " + BigBadCgpaEntries.TABLE_NAME);
+        onCreate(db);
+        db.close();
+    }
+
+
+
+
+
+}

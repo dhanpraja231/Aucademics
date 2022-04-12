@@ -6,14 +6,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
@@ -22,8 +19,7 @@ import android.widget.Toast;
 
 import com.example.aucademics.R;
 import com.example.aucademics.bunkFragment.BunkItem;
-import com.example.aucademics.bunkFragment.bunkRVAdapter;
-import com.example.aucademics.databases.DepartmentDetailsAccess;
+import com.example.aucademics.databases.DepartmentResourceDatabase.DepartmentDetailsAccess;
 import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -93,7 +89,7 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                         tokenSPEditor = tokenSP.edit();
                         tokenSPEditor.putBoolean("token",false);
                         tokenSPEditor.commit();
-                        //TODO clear SQLlite
+                        //TODO clear cgpa SQLlite
                         finish();
                         startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
                     }
@@ -112,9 +108,6 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 break;
             case R.id.custom_subject:
                 startActivity(new Intent(bunkNcgpa.this, AddCustomSubject.class));
-                //show activity
-                //Enter subject name, credits, hours
-                //press confirm -> add to private SQLlite and display in recycler view
                 break;
             case R.id.prev_semester:
                 AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
@@ -149,10 +142,6 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                                 db.initialize(newDataList);
                                 db.close();
 
-
-
-
-                                //TODO fix recycler view
                                 finish();
                                 startActivity(new Intent(bunkNcgpa.this, bunkNcgpa.class));
                             }
@@ -209,9 +198,6 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                                 db.upgrade();
                                 db.initialize(newDataList);
                                 db.close();
-
-                                //TODO fix recycler view
-                                //maybe relaunch the app
                                 finish();
                                 startActivity(new Intent(bunkNcgpa.this, bunkNcgpa.class));
                             }

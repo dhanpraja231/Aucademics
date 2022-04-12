@@ -1,4 +1,4 @@
-package com.example.aucademics.databases;
+package com.example.aucademics.databases.DepartmentResourceDatabase;
 
 import android.content.Context;
 
