@@ -45,7 +45,7 @@ public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
 
     public void initialize(ArrayList<gpaItem> ar){
         SQLiteDatabase db = this.getWritableDatabase();
-        System.out.println("data list in bidbaghelperclass "+ ar);
+        System.out.println("data list in big bad helper class "+ ar);
         for(gpaItem i: ar){
             ContentValues cv = new ContentValues();
             cv.put(BigBadCgpaEntries.COLUMN_SUBJECT,i.getSubjectName());
@@ -67,14 +67,15 @@ public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(query,null);
         while(c.moveToNext()){
             if(c.getString(4)!=null){
-            result.add(new gpaItem(c.getString(1),c.getString(2),Integer.parseInt(c.getString(3)),Integer.parseInt(c.getString(4)),Integer.parseInt(c.getString(5))));}
+            result.add(new gpaItem(Integer.parseInt(c.getString(0)),c.getString(1),c.getString(2),Integer.parseInt(c.getString(3)),Integer.parseInt(c.getString(4)),Integer.parseInt(c.getString(5))));}
             else{
 
-                result.add(new gpaItem(c.getString(1),c.getString(2),Integer.parseInt(c.getString(3)),Integer.parseInt(c.getString(5))));
+                result.add(new gpaItem(Integer.parseInt(c.getString(0)), c.getString(1),c.getString(2),Integer.parseInt(c.getString(3)),Integer.parseInt(c.getString(5))));
             }
         }
         System.out.println("result set from get semester data:  "+result);
-        //db.close();
+
+        db.close();
         c.close();
 
         return result;

@@ -1,19 +1,29 @@
 package com.example.aucademics.cgpaFragment;
 
 public class gpaItem {
+    Integer id;
     String subjectName;
     String subjectCode;
     Integer credits;
     Integer gradeAchieved;
     Integer semOffered;
 
-    public gpaItem(String subjectName, String subjectCode, Integer credits, Integer semOffered) {
+    public gpaItem(Integer id, String subjectName, String subjectCode, Integer credits, Integer semOffered) {
+        this.id =id;
         this.subjectName = subjectName;
         this.subjectCode = subjectCode;
         this.credits = credits;
         this.gradeAchieved = null;
         this.semOffered = semOffered;
-    }public gpaItem(String subjectName, String subjectCode, Integer credits,Integer gradeAchieved, Integer semOffered) {
+    }public gpaItem(Integer id, String subjectName, String subjectCode, Integer credits,Integer gradeAchieved, Integer semOffered) {
+        this.id = id;
+        this.subjectName = subjectName;
+        this.subjectCode = subjectCode;
+        this.credits = credits;
+        this.gradeAchieved = gradeAchieved;
+        this.semOffered = semOffered;
+    }
+    public gpaItem(String subjectName, String subjectCode, Integer credits, Integer semOffered) {
         this.subjectName = subjectName;
         this.subjectCode = subjectCode;
         this.credits = credits;
@@ -48,7 +58,8 @@ public class gpaItem {
     @Override
     public String toString() {
         return "gpaItem{" +
-                "subjectName='" + subjectName + '\'' +
+                "id=" + id +
+                ", subjectName='" + subjectName + '\'' +
                 ", subjectCode='" + subjectCode + '\'' +
                 ", credits=" + credits +
                 ", gradeAchieved=" + gradeAchieved +

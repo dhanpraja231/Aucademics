@@ -7,19 +7,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 
 import com.example.aucademics.R;
 import com.example.aucademics.databases.CGPA_DB.BigBadCGPATableDBHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class SelectGpaActivity extends AppCompatActivity {
     RecyclerView selectGpaList;
-    //TODO: make dedicated rv adapter and select subjects from big bad table
     SharedPreferences sp;
     selectGpaRVAdapter rvAdapter;
     ArrayList<gpaItem> dataList;
+    ArrayList<gpaItem> cbDataList;
     BigBadCGPATableDBHelper db;
+    FloatingActionButton mConfirmButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,37 +43,16 @@ public class SelectGpaActivity extends AppCompatActivity {
         rvAdapter = new selectGpaRVAdapter(dataList);
         selectGpaList.setAdapter(rvAdapter);
         selectGpaList.setLayoutManager(new LinearLayoutManager(this));
+        mConfirmButton = findViewById(R.id.select_gpa_confirm_button);
 
-//            this.mConfirmButton =itemView.findViewById(R.id.select_gpa_confirm_button);
-//            mConfirmButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    String selectedGpa = mSelectGpa.getSelectedItem().toString();
-//                    Integer correspondingGP;
-//                    System.out.println("selected gpa = "+selectedGpa);
-//                    switch (selectedGpa){
-//                        case "O":
-//                            correspondingGP = 10;
-//                            break;
-//                        case "A+":
-//                            correspondingGP = 9;
-//                            break;
-//                        case "A":
-//                            correspondingGP = 8;
-//                            break;
-//                        case "B+":
-//                            correspondingGP = 7;
-//                            break;
-//                        case "B":
-//                            correspondingGP = 6;
-//                            break;
-//                        default:
-//                            correspondingGP = 0;
-//                    }
-//
-//                    //TODO: update big bad table and main cgpa
-//                }
-//            });
+        mConfirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cbDataList = rvAdapter.getDataList();
+                //TODO: update big bad table
+            }
+        });
+
 
     }
 }

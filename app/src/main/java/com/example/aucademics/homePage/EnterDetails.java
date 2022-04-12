@@ -46,23 +46,11 @@ public class EnterDetails extends AppCompatActivity {
 
         boolean completedDetails = tokenSP.getBoolean("token",false);
         System.out.println("compDet: "+completedDetails);
-//        if(completedDetails){
-//            finish();
-//            startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
-//        }
+        if(completedDetails){
+            finish();
+            startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
+        }
 
-//        startBlank.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                tokenSPEditor = tokenSP.edit();
-//                tokenSPEditor.putBoolean("token",true);
-//                tokenSPEditor.commit();
-//                startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
-//                finish();
-//            }
-//        });
         semesterGet = findViewById(R.id.s_semester);
         departmentGet = findViewById(R.id.s_department);
         regulationGet = findViewById(R.id.s_regulations);
@@ -94,10 +82,11 @@ public class EnterDetails extends AppCompatActivity {
                 db.initialize(bunkItemArrayList);
                 db.close();
                 BigBadCGPATableDBHelper db2 = new BigBadCGPATableDBHelper(EnterDetails.this);
-                db2.deleteTable();
                 System.out.println("gpa item array list in enter details: "+ gpaItemArrayList);
+                db2.deleteTable();
                 db2.initialize(gpaItemArrayList);
                 db2.close();
+
                 //db.open();
 
                 startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));

@@ -39,7 +39,6 @@ public class SemesterTileRVAdapter extends RecyclerView.Adapter<SemesterTileRVAd
     @Override
     public void onBindViewHolder(@NonNull SemesterTileViewHolder holder, int position) {
         SemesterItem currentItem = dataList.get(position);
-        System.out.println("current item semester " + currentItem.getSemester()) ;
         holder.mSemesterNo.setText(new StringBuilder().append("Semester ").append(currentItem.getSemester()).toString());
         if(currentItem.getCgpa()!=null){
         holder.mCgpa.setText(String.valueOf(currentItem.getCgpa()));

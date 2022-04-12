@@ -74,8 +74,9 @@
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/subject_rv_select_gpa"
+            android:entries="@array/grades"
             android:layout_width="120sp"
-            android:layout_height="wrap_content"
+            android:layout_height="27sp"
             android:layout_marginStart="80sp"
             android:layout_marginTop="50sp" />
 
