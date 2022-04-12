@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +12,7 @@ import android.view.View;
 
 import com.example.aucademics.R;
 import com.example.aucademics.databases.CGPA_DB.BigBadCGPATableDBHelper;
+import com.example.aucademics.homePage.bunkNcgpa;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class SelectGpaActivity extends AppCompatActivity {
         db = new BigBadCGPATableDBHelper(this);
         dataList = db.getSubjectsOf(semesterRequested);
         System.out.println("subjects received "+dataList);
-        rvAdapter = new selectGpaRVAdapter(dataList);
+        rvAdapter = new selectGpaRVAdapter(dataList,this);
         selectGpaList.setAdapter(rvAdapter);
         selectGpaList.setLayoutManager(new LinearLayoutManager(this));
         mConfirmButton = findViewById(R.id.select_gpa_confirm_button);
@@ -49,7 +51,13 @@ public class SelectGpaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cbDataList = rvAdapter.getDataList();
-                //TODO: update big bad table
+                BigBadCGPATableDBHelper db = new BigBadCGPATableDBHelper(SelectGpaActivity.this);
+                db.updateGradeValues(cbDataList);
+                finish();
+                Intent i = new Intent(SelectGpaActivity.this, bunkNcgpa.class);
+
+
+                startActivity(i);
             }
         });
 

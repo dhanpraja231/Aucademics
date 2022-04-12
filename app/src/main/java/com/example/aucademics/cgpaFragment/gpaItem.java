@@ -55,6 +55,10 @@ public class gpaItem {
         this.gradeAchieved = gradeAchieved;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "gpaItem{" +

@@ -67,7 +67,6 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
         new TabLayoutMediator(tabLayout,viewPager,((tab,position) -> tab.setText(titles[position]))).attach();
 
 
-
     }
 
     @Override
@@ -89,7 +88,6 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                         tokenSPEditor = tokenSP.edit();
                         tokenSPEditor.putBoolean("token",false);
                         tokenSPEditor.commit();
-                        //TODO clear cgpa SQLlite
                         finish();
                         startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
                     }
@@ -180,10 +178,10 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                             String userRegulation = tokenSP.getString("regulations","none");
                             String userDepartment = tokenSP.getString("department","none");
                             String userSemTemp = tokenSP.getString("semester","2");
-                            System.out.println("user semTemp= " +userSemTemp.substring(userSemTemp.length() - 1));
+                            //System.out.println("user semTemp= " +userSemTemp.substring(userSemTemp.length() - 1));
                             String userSemester = String.valueOf(Integer.parseInt(userSemTemp.substring(userSemTemp.length() - 1))+1);
-                            System.out.println("user semester "+userSemester);
-                            if(Integer.parseInt(userSemester)<=6) {
+                            //System.out.println("user semester "+userSemester);
+                            if(Integer.parseInt(userSemester)<=8) {
                                 DepartmentDetailsAccess detailsAccess = DepartmentDetailsAccess.getInstance(getBaseContext());
                                 detailsAccess.open();
                                 newDataList = detailsAccess.getSubjectsForBunk(userRegulation, userDepartment, userSemester);

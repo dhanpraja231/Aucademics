@@ -39,6 +39,7 @@ public class SemesterTileRVAdapter extends RecyclerView.Adapter<SemesterTileRVAd
     @Override
     public void onBindViewHolder(@NonNull SemesterTileViewHolder holder, int position) {
         SemesterItem currentItem = dataList.get(position);
+        System.out.println(currentItem);
         holder.mSemesterNo.setText(new StringBuilder().append("Semester ").append(currentItem.getSemester()).toString());
         if(currentItem.getCgpa()!=null){
         holder.mCgpa.setText(String.valueOf(currentItem.getCgpa()));
@@ -86,7 +87,7 @@ public class SemesterTileRVAdapter extends RecyclerView.Adapter<SemesterTileRVAd
                     spEditor.putInt("semesterClicked" ,semesterNo);
                     spEditor.commit();
 
-                    //TODO: redirect to enter gpa activity
+
                     Intent intent = new Intent (view.getContext(), SelectGpaActivity.class);
                     view.getContext().startActivity(intent);
                 }

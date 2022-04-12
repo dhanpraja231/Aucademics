@@ -52,7 +52,6 @@ public class DepartmentDetailsAccess {
     public ArrayList<gpaItem> getSubjectsForBigBadTable(String userRegulations, String userDepartment, String userSemester){
         int userSemester1 = Integer.parseInt(String.valueOf(userSemester.charAt(userSemester.length()-1)));
         Cursor c1 = db.rawQuery("select subject_name,subject_code,credits,sem_offered from '"+userDepartment+"'",new String[]{});
-        //TODO: not sure of id
         ArrayList<gpaItem> result = new ArrayList<>(10);
         while(c1.moveToNext()){
             result.add(new gpaItem(c1.getString(0),c1.getString(1),Integer.parseInt(c1.getString(2)),Integer.parseInt(c1.getString(3))));
