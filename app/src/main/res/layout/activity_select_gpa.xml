@@ -6,8 +6,18 @@
     android:layout_height="match_parent"
     android:layout_marginStart="0dp">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/selectGpaToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+         />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_select_cgpa_list"
+        android:layout_marginTop="62sp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

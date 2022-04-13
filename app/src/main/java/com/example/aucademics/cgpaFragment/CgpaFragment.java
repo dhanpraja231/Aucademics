@@ -36,7 +36,7 @@ public class CgpaFragment extends Fragment {
         for(int i =1;i<=8;i++){
             Double cgpa = db.calculateGpaOfSemester(i);
             if(cgpa!=null){
-            cgpa = round(cgpa,2);
+            cgpa = round(cgpa,3);
             cgpaCumulative +=cgpa;
             semestersAccounted++;}
             tileData.add(new SemesterItem(i,cgpa));
@@ -44,11 +44,11 @@ public class CgpaFragment extends Fragment {
         db.close();
         if(semestersAccounted!=0){
             double result = (double)cgpaCumulative/(double)semestersAccounted;
-            result = round(result,2);
+            result = round(result,3);
             mFinalGpa.setText(String.valueOf(result));
         }
 
-        System.out.println("tile Data: "+tileData);
+        //System.out.println("tile Data: "+tileData);
         SemesterTileRVAdapter rvAdapter = new SemesterTileRVAdapter(tileData,this.getContext());
         rvCgpaList = root.findViewById(R.id.rv_cgpa_list);
         rvCgpaList.setAdapter(rvAdapter);

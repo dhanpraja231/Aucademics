@@ -1,11 +1,13 @@
 package com.example.aucademics.cgpaFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -25,12 +27,28 @@ public class SelectGpaActivity extends AppCompatActivity {
     ArrayList<gpaItem> cbDataList;
     BigBadCGPATableDBHelper db;
     FloatingActionButton mConfirmButton;
+    Toolbar tBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_gpa);
         selectGpaList = findViewById(R.id.rv_select_cgpa_list);
+        tBar = findViewById(R.id.selectGpaToolbar);
+        tBar.setBackgroundColor(Color.parseColor("#00004d"));
+        tBar.setNavigationIcon(getDrawable(R.drawable.ic_baseline_arrow_back_24));
+        tBar.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tBar.setTitle("ENTER GRADES");
+        tBar.setTitleTextColor(Color.parseColor("#868113"));
+        tBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                //What to do on back clicked
+            }
+        });
+
+
         sp = PreferenceManager.getDefaultSharedPreferences(
                 this);
         Integer semesterRequested = sp.getInt("semesterClicked",0);
