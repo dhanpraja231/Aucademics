@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:layout_marginStart="2dp"
-    android:layout_margin="0dp"
+    android:layout_height="160sp"
+    android:layout_marginStart="2sp"
+    android:layout_margin="0sp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="6dp"
+    app:cardCornerRadius="8sp"
+    app:cardElevation="6sp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true">
 
@@ -40,15 +40,15 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="280sp"
-            android:layout_marginTop="96dp"/>
+            android:layout_marginTop="96sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="50sp"
             android:text="Grade: "
             android:textSize="20sp" />
 
@@ -57,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="96dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="96sp"
             android:text="credits: "
             android:textSize="20sp" />
         <TextView
@@ -69,8 +69,8 @@
             android:textSize="20sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="96dp"/>
+            android:layout_marginStart="92sp"
+            android:layout_marginTop="96sp"/>
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/subject_rv_select_gpa"

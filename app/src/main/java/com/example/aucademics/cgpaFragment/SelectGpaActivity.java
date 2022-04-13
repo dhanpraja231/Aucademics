@@ -35,13 +35,13 @@ public class SelectGpaActivity extends AppCompatActivity {
                 this);
         Integer semesterRequested = sp.getInt("semesterClicked",0);
         if(semesterRequested==0){
-            System.out.println("semester not found");
+            //System.out.println("semester not found");
             finish();
         }
-        System.out.println("semester received "+semesterRequested);
+        //System.out.println("semester received "+semesterRequested);
         db = new BigBadCGPATableDBHelper(this);
         dataList = db.getSubjectsOf(semesterRequested);
-        System.out.println("subjects received "+dataList);
+        //System.out.println("subjects received "+dataList);
         rvAdapter = new selectGpaRVAdapter(dataList,this);
         selectGpaList.setAdapter(rvAdapter);
         selectGpaList.setLayoutManager(new LinearLayoutManager(this));

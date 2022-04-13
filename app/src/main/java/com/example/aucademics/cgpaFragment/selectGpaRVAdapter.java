@@ -33,8 +33,8 @@ public class selectGpaRVAdapter extends RecyclerView.Adapter<selectGpaRVAdapter.
         this.context = context;
     }
     //TODO: cooler design for start page and custom subject
-    //TODO: Add all other departments
-    //TODO: handle dark mode
+    //TODO: Help page and redirect to G play
+
     @NonNull
     @Override
     public selectGPAViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,10 +55,12 @@ public class selectGpaRVAdapter extends RecyclerView.Adapter<selectGpaRVAdapter.
         if(db.getGradeOfid(id)!=null){
             Integer grade = Integer.parseInt(db.getGradeOfid(id));
             holder.mSelectGpa.setSelection(getPositionOfGrade(grade));
-            System.out.println("pos garde "+grade);
-            System.out.println(getPositionOfGrade(grade));}
+            //System.out.println("pos garde "+grade);
+            //System.out.println(getPositionOfGrade(grade));
+        }
         else{
             holder.mSelectGpa.setSelection(0);}
+        db.close();
     }
 
     private int getPositionOfGrade(Integer grade){
@@ -111,7 +113,7 @@ public class selectGpaRVAdapter extends RecyclerView.Adapter<selectGpaRVAdapter.
                 public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                     String selectedGpa = mSelectGpa.getSelectedItem().toString();
                     Integer correspondingGP;
-                    System.out.println("selected gpa = "+selectedGpa);
+                    //System.out.println("selected gpa = "+selectedGpa);
                     switch (selectedGpa) {
                         case "O":
                             correspondingGP = 10;

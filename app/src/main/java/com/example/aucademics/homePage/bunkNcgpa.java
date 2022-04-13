@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.aucademics.R;
@@ -79,8 +80,12 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 alert.setMessage("This will clear all subjects, subjects will not be recoverable");
                 final CheckBox cBoxConfirm = new CheckBox(this);
                 cBoxConfirm.setText("Confirm Action");
-
-                alert.setView(cBoxConfirm);
+                LinearLayout layout = new LinearLayout(this);
+                layout.setOrientation(LinearLayout.HORIZONTAL);
+                cBoxConfirm.setText("Confirm Action");
+                layout.addView(cBoxConfirm);
+                layout.setPadding(50, 40, 50, 10);
+                alert.setView(layout);
                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                     if(cBoxConfirm.isChecked()){
@@ -109,12 +114,16 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 break;
             case R.id.prev_semester:
                 AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
-                alert2.setTitle("CONFIRM OPTION");
+                alert2.setTitle("CONFIRM");
                 alert2.setMessage("This will clear all current bunk data, data will not be recoverable");
+                LinearLayout layout2 = new LinearLayout(this);
+                layout2.setOrientation(LinearLayout.HORIZONTAL);
                 CheckBox cBoxConfirm2 = new CheckBox(this);
                 cBoxConfirm2.setText("Confirm Action");
+                layout2.addView(cBoxConfirm2);
+                layout2.setPadding(50, 40, 50, 10);
+                alert2.setView(layout2);
 
-                alert2.setView(cBoxConfirm2);
                 alert2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if(cBoxConfirm2.isChecked()){
@@ -161,12 +170,16 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
 
             case R.id.next_semester:
                 AlertDialog.Builder alert3 = new AlertDialog.Builder(this);
-                alert3.setTitle("CONFIRM OPTION");
+                alert3.setTitle("CONFIRM");
                 alert3.setMessage("This will clear all current bunk data, data will not be recoverable");
+                LinearLayout layout3 = new LinearLayout(this);
+                layout3.setOrientation(LinearLayout.HORIZONTAL);
                 CheckBox cBoxConfirm3 = new CheckBox(this);
                 cBoxConfirm3.setText("Confirm Action");
 
-                alert3.setView(cBoxConfirm3);
+                layout3.addView(cBoxConfirm3);
+                layout3.setPadding(50, 40, 50, 10);
+                alert3.setView(layout3);
                 alert3.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         if(cBoxConfirm3.isChecked()){
@@ -216,7 +229,7 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.playstore_redirect:
-                //redirect to playstore app via explicit intent
+                //TODO: redirect to playstore app via explicit intent
                 break;
             case R.id.help_nav:
                 //intent to FAQ page via explicit intent

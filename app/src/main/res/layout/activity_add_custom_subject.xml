@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="100dp"
-        android:layout_height="43dp"
+        android:layout_width="100sp"
+        android:layout_height="43sp"
         android:text="Credits"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="100dp"
-        android:layout_height="43dp"
+        android:layout_width="100sp"
+        android:layout_height="43sp"
         android:text="Subject"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -37,8 +37,8 @@
 
     <EditText
         android:id="@+id/ET_Custom_Credits"
-        android:layout_width="265dp"
-        android:layout_height="45dp"
+        android:layout_width="265sp"
+        android:layout_height="45sp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,8 +50,8 @@
 
     <EditText
         android:id="@+id/ET_Custom_T_Hours"
-        android:layout_width="265dp"
-        android:layout_height="45dp"
+        android:layout_width="265sp"
+        android:layout_height="45sp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,8 +63,8 @@
 
     <EditText
         android:id="@+id/ET_Custom_Subject"
-        android:layout_width="265dp"
-        android:layout_height="45dp"
+        android:layout_width="265sp"
+        android:layout_height="45sp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,8 +76,8 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="370dp"
-        android:layout_height="40dp"
+        android:layout_width="370sp"
+        android:layout_height="40sp"
         android:text="Enter Custom Subject Details"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -90,8 +90,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="100dp"
-        android:layout_height="43dp"
+        android:layout_width="100sp"
+        android:layout_height="43sp"
         android:text="Total Hours"
         android:textAlignment="center"
         android:textSize="18sp"
@@ -104,8 +104,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/custom_sub_okay"
-        android:layout_width="141dp"
-        android:layout_height="63dp"
+        android:layout_width="141sp"
+        android:layout_height="63sp"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,8 +116,8 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/custom_sub_cancel"
-        android:layout_width="150dp"
-        android:layout_height="62dp"
+        android:layout_width="150sp"
+        android:layout_height="62sp"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

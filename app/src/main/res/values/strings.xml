@@ -1,7 +1,6 @@
 <resources>
     <string-array name="regulations">
         <item>2019</item>
-        <item>RUSA 2018</item>
     </string-array>
     <string-array name="semester">
         <item>Semester 1</item>
@@ -14,11 +13,32 @@
         <item>Semester 8</item>
     </string-array>
     <string-array name="department">
-        <item>DECE</item>
-        <item>DIST</item>
-        <item>DEEE</item>
-        <item>DME</item>
-        <item>DCSE</item>
+        <item>Aeronautics</item>
+        <item>Apparel</item>
+        <item>Automobile</item>
+        <item>BME</item>
+        <item>Ceramic</item>
+        <item>Chemical</item>
+        <item>Civil</item>
+        <item>ECE</item>
+        <item>EEE</item>
+        <item>EIE</item>
+        <item>FoodTech</item>
+        <item>GeoInfo</item>
+        <item>IBT</item>
+        <item>IT</item>
+        <item>Industrial</item>
+        <item>Leather</item>
+        <item>Manufacturing</item>
+        <item>MatSc</item>
+        <item>Mech</item>
+        <item>Mining</item>
+        <item>Petroleum</item>
+        <item>Pharma</item>
+        <item>Printing</item>
+        <item>Production</item>
+        <item>RPT</item>
+
     </string-array>
     <string-array name="grades">
         <item>O</item>

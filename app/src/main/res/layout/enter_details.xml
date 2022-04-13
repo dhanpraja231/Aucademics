@@ -9,8 +9,8 @@
 
     <Spinner
         android:id="@+id/s_semester"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
+        android:layout_width="350sp"
+        android:layout_height="40sp"
         android:entries="@array/semester"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,8 +21,8 @@
 
     <Spinner
         android:id="@+id/s_department"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
+        android:layout_width="350sp"
+        android:layout_height="40sp"
         android:entries="@array/department"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/first_inst"
         android:layout_width="200sp"
-        android:layout_height="40dp"
+        android:layout_height="40sp"
         android:text="Enter details"
         android:textAlignment="center"
         android:textSize="30sp"
@@ -46,8 +46,8 @@
 
     <Spinner
         android:id="@+id/s_regulations"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
+        android:layout_width="350sp"
+        android:layout_height="40sp"
         android:entries="@array/regulations"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +58,8 @@
 
     <ImageView
         android:id="@+id/home_img"
-        android:layout_width="165dp"
-        android:layout_height="159dp"
+        android:layout_width="165sp"
+        android:layout_height="159sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
