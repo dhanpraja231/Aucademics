@@ -58,9 +58,17 @@ public class SelectGpaActivity extends AppCompatActivity {
 
 
                 startActivity(i);
+                finish();
             }
         });
 
+
+    }
+    @Override
+    public void onBackPressed(){
+        Intent i = new Intent(SelectGpaActivity.this, bunkNcgpa.class);
+        startActivity(i);
+        finish();
 
     }
 }

@@ -153,10 +153,8 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                     }
                 });
 
-                alert2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        // Canceled.
-                    }
+                alert2.setNegativeButton("Cancel", (dialog, whichButton) -> {
+                    // Canceled.
                 });
                 alert2.show();
                 break;

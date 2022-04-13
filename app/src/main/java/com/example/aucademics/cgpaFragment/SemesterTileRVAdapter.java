@@ -1,5 +1,6 @@
 package com.example.aucademics.cgpaFragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -90,6 +91,7 @@ public class SemesterTileRVAdapter extends RecyclerView.Adapter<SemesterTileRVAd
 
                     Intent intent = new Intent (view.getContext(), SelectGpaActivity.class);
                     view.getContext().startActivity(intent);
+                    ((Activity)context).finish();
                 }
             });
 
