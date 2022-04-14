@@ -32,8 +32,9 @@ public class selectGpaRVAdapter extends RecyclerView.Adapter<selectGpaRVAdapter.
         this.dataList = dataList;
         this.context = context;
     }
-    //TODO: cooler design for start page and custom subject
+    //TODO: cooler design for start page
     //TODO: Help page and redirect to G play
+    //TODO: logo and nav bar banner
 
     @NonNull
     @Override

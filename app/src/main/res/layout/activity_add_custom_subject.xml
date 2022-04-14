@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".homePage.AddCustomSubject">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="100sp"
-        android:layout_height="43sp"
-        android:text="Credits"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247" />
 
     <TextView
         android:id="@+id/textView3"
@@ -35,22 +22,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.148" />
 
-    <EditText
-        android:id="@+id/ET_Custom_Credits"
-        android:layout_width="265sp"
-        android:layout_height="45sp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.89"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.231" />
 
     <EditText
         android:id="@+id/ET_Custom_T_Hours"
-        android:layout_width="265sp"
+        android:layout_width="245sp"
         android:layout_height="45sp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -59,11 +34,11 @@
         app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336" />
+        app:layout_constraintVertical_bias="0.233" />
 
     <EditText
         android:id="@+id/ET_Custom_Subject"
-        android:layout_width="265sp"
+        android:layout_width="245sp"
         android:layout_height="45sp"
         android:ems="10"
         android:inputType="textPersonName"
@@ -74,19 +49,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.132" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="370sp"
-        android:layout_height="40sp"
-        android:text="Enter Custom Subject Details"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/custom_sub_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <TextView
         android:id="@+id/textView2"
@@ -100,29 +70,21 @@
         app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.353" />
+        app:layout_constraintVertical_bias="0.233" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/custom_sub_okay"
-        android:layout_width="141sp"
+        android:layout_width="170sp"
         android:layout_height="63sp"
+        android:textColor="@color/gold"
+        android:background="@color/blueDark"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.571" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/custom_sub_cancel"
-        android:layout_width="150sp"
-        android:layout_height="62sp"
-        android:text="Cancel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

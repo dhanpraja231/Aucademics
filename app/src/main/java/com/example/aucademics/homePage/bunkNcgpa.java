@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
@@ -58,8 +59,10 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
         navigationView.setNavigationItemSelectedListener(this);
         tabLayout = findViewById(R.id.login_tab_layout);
         viewPager = findViewById(R.id.login_viewPager);
+        tabLayout.setBackgroundColor(Color.parseColor("#00004d"));
 
-        tabLayout.addTab(tabLayout.newTab().setText("Bunk manager"));
+
+        tabLayout.addTab(tabLayout.newTab().setText("Attendance Tracker"));
         tabLayout.addTab(tabLayout.newTab().setText("CGPA"));
 
         HomepageFragmentAdapter adapter = new HomepageFragmentAdapter(this);
@@ -232,7 +235,7 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 //TODO: redirect to playstore app via explicit intent
                 break;
             case R.id.help_nav:
-                //intent to FAQ page via explicit intent
+                //TODO: intent to FAQ page via implicit intent
                 break;
     }
     return true;

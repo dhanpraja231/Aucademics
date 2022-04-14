@@ -2,6 +2,7 @@ package com.example.aucademics.bunkFragment;
 
 
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,9 +82,14 @@ public class bunkRVAdapter extends RecyclerView.Adapter<bunkRVAdapter.bunkViewHo
     @Override
     public void onBindViewHolder(@NonNull bunkRVAdapter.bunkViewHolder holder, int position) {
         BunkItem currentItem = dataList.get(position);
+
         holder.mAttendance.setText(String.valueOf( currentItem.getAttendancePercent()));
         holder.mBunksDone.setText(String.valueOf(currentItem.getBunkedHours()));
+
         holder.mBunksLeft.setText(String.valueOf(currentItem.getBunkHoursLeft()));
+        if(currentItem.getBunkHoursLeft()<5){
+            holder.itemView.setBackgroundColor(Color.parseColor("#ffc0cb"));
+        }
         holder.mSubjectName.setText(currentItem.getSubject_name());
     }
 

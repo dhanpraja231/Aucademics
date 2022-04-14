@@ -22,7 +22,7 @@ public class BunkFragment extends Fragment {
         rvBunkList = root.findViewById(R.id.rv_bunk_list);
         BunkManagerDBHelper db = new BunkManagerDBHelper(this.getContext(),"userBunkDB",null,1);
         ArrayList<BunkItem> data = db.getAllSubjects();
-        System.out.println("Datalist ="+ data);
+        //System.out.println("Datalist ="+ data);
         bunkRVAdapter rvListAdapter = new bunkRVAdapter(data);
         rvBunkList.setAdapter(rvListAdapter);
         rvBunkList.setLayoutManager(new LinearLayoutManager(this.getContext()));
