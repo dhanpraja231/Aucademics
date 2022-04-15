@@ -77,7 +77,7 @@
         android:layout_width="170sp"
         android:layout_height="63sp"
         android:textColor="@color/gold"
-        android:background="@color/blueDark"
+        android:background="@drawable/round_button"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".homePage.EnterDetails"
-    android:background="@color/gold"
     android:forceDarkAllowed="true">
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/s_semester"
-        android:layout_width="350sp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50sp"
         android:layout_height="40sp"
-
         android:entries="@array/semester"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,9 +20,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.772" />
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
+        style="but"
         android:id="@+id/s_department"
-        android:layout_width="350sp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50sp"
         android:layout_height="40sp"
         android:entries="@array/department"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,9 +35,10 @@
         app:layout_constraintVertical_bias="0.677" />
 
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/s_regulations"
-        android:layout_width="350sp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="50sp"
         android:layout_height="40sp"
         android:entries="@array/regulations"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,16 +48,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.58" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/home_img"
-        android:layout_width="165sp"
-        android:layout_height="159sp"
+        style="@style/roundedImageViewRounded"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326"
-        app:srcCompat="@mipmap/icon_for_app_2" />
+        app:layout_constraintVertical_bias="0.293"
+        app:srcCompat="@mipmap/icon_for_app_2_round" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submit_details"
@@ -64,7 +68,7 @@
         android:text="Submit"
         android:elevation="20sp"
         android:textColor="@color/gold"
-        android:background="@color/blueDark"
+        android:background="@drawable/round_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

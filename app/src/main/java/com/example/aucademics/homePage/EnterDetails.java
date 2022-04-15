@@ -1,13 +1,19 @@
 package com.example.aucademics.homePage;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.aucademics.R;
 import com.example.aucademics.bunkFragment.BunkItem;
@@ -56,6 +62,36 @@ public class EnterDetails extends AppCompatActivity {
         regulationGet = findViewById(R.id.s_regulations);
         BunkManagerDBHelper db = new BunkManagerDBHelper(EnterDetails.this,"userBunkDB",null,1);
         db.close();
+
+        AlertDialog.Builder alert3 = new AlertDialog.Builder(this);
+        alert3.setTitle("T&C");
+        alert3.setMessage("The Aucademics team is not responsible or liable for any loss suffered by the user due to the usage of this app.\n" +
+                "However we promise that the functionality of the app is refined to the best of our knowledge.\n" +
+                "Aucademics team is not affiliated with Anna University ");
+
+
+        alert3.setPositiveButton("ACKNOWLEDGE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //do nothing
+            }
+        });
+
+        alert3.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                finish();
+            }
+        });
+        alert3.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                finish();
+            }
+        });
+
+        alert3.show();
+
+
+
         submitDetails.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -93,5 +129,7 @@ public class EnterDetails extends AppCompatActivity {
                 finish();
             }
         });
+
     }
+
 }
