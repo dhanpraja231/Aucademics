@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -39,7 +40,6 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
     Toolbar navToolBar;
     SharedPreferences tokenSP;
     SharedPreferences.Editor tokenSPEditor;
-
     TabLayout tabLayout;
     ViewPager2 viewPager;
 
@@ -50,8 +50,19 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_Bar);
         navToolBar = findViewById(R.id.tool_bar);
-
+        navToolBar.setBackgroundColor(Color.parseColor("#00004d"));
+        navToolBar.setTitleTextColor(Color.parseColor("#00004d"));
         navigationView.bringToFront();
+        setSupportActionBar(navToolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        navToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this, drawerLayout, navToolBar,0,0);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -62,12 +73,12 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
         tabLayout.setBackgroundColor(Color.parseColor("#00004d"));
 
 
-        tabLayout.addTab(tabLayout.newTab().setText("Attendance Tracker"));
+        tabLayout.addTab(tabLayout.newTab().setText("Attendance"));
         tabLayout.addTab(tabLayout.newTab().setText("CGPA"));
 
         HomepageFragmentAdapter adapter = new HomepageFragmentAdapter(this);
         viewPager.setAdapter(adapter);
-        String[] titles = new String[]{"Bunk manager","CGPA"};
+        String[] titles = new String[]{"Attendance","CGPA"};
         new TabLayoutMediator(tabLayout,viewPager,((tab,position) -> tab.setText(titles[position]))).attach();
 
 
@@ -235,7 +246,7 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 //TODO: redirect to playstore app via explicit intent
                 break;
             case R.id.help_nav:
-                //TODO: intent to FAQ page via implicit intent
+                startActivity(new Intent(bunkNcgpa.this, HelpNFAQ.class));
                 break;
     }
     return true;

@@ -55,7 +55,10 @@ public class AddCustomSubject extends AppCompatActivity {
                 String totalHours = mTotalHours.getText().toString();
                 //String credits = mCredits.getText().toString();
                 String regex = "[0-9]";
-                if(!totalHours.matches(regex)){
+                if(subName.isEmpty()){
+                    Toast.makeText(AddCustomSubject.this,"invalid subject name",Toast.LENGTH_SHORT).show();
+                }
+                else if(!totalHours.matches(regex)){
                     Toast.makeText(AddCustomSubject.this,"invalid total hours",Toast.LENGTH_SHORT).show();
                 }
 

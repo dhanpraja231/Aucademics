@@ -38,23 +38,23 @@
             android:id="@+id/bunk_holder_increment_button"
             android:layout_width="60sp"
             android:layout_height="60sp"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="308sp"
+            android:layout_marginEnd="25sp"
             android:layout_marginTop="35sp"
-            android:textSize="30sp"
-            android:text="+" />
+            android:text="+"
+            android:textSize="30sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bunk_holder_decrement_button"
             android:layout_width="60sp"
             android:layout_height="60sp"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="238sp"
+            android:layout_marginEnd="93sp"
             android:layout_marginTop="35sp"
-            android:textSize="30sp"
-            android:text="-" />
+            android:text="-"
+            android:textSize="30sp" />
 
 
         <TextView

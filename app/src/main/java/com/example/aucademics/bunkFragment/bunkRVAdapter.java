@@ -87,9 +87,14 @@ public class bunkRVAdapter extends RecyclerView.Adapter<bunkRVAdapter.bunkViewHo
         holder.mBunksDone.setText(String.valueOf(currentItem.getBunkedHours()));
 
         holder.mBunksLeft.setText(String.valueOf(currentItem.getBunkHoursLeft()));
-        if(currentItem.getBunkHoursLeft()<5){
-            holder.itemView.setBackgroundColor(Color.parseColor("#ffc0cb"));
-        }
+        //removed buggy feature
+//        if(currentItem.getBunkHoursLeft()<5){
+//            holder.itemView.setBackgroundColor(Color.parseColor("#ffc0cb"));
+//        }
+//        else{
+//            holder.itemView.setBackgroundColor(Color.WHITE);
+//        }
+
         holder.mSubjectName.setText(currentItem.getSubject_name());
     }
 

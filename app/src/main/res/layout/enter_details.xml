@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".homePage.EnterDetails"
+    android:background="@color/gold"
     android:forceDarkAllowed="true">
 
     <Spinner
         android:id="@+id/s_semester"
         android:layout_width="350sp"
         android:layout_height="40sp"
+
         android:entries="@array/semester"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,18 +33,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.677" />
 
-    <TextView
-        android:id="@+id/first_inst"
-        android:layout_width="200sp"
-        android:layout_height="40sp"
-        android:text="Enter details"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143" />
 
     <Spinner
         android:id="@+id/s_regulations"
@@ -65,13 +55,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.326"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        app:srcCompat="@mipmap/icon_for_app_2" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submit_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
+        android:elevation="20sp"
+        android:textColor="@color/gold"
+        android:background="@color/blueDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

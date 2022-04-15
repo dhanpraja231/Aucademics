@@ -33,8 +33,8 @@ public class selectGpaRVAdapter extends RecyclerView.Adapter<selectGpaRVAdapter.
         this.context = context;
     }
     //TODO: cooler design for start page
-    //TODO: Help page and redirect to G play
-    //TODO: logo and nav bar banner
+    //TODO: redirect to G play
+    //TODO: nav bar banner
 
     @NonNull
     @Override
