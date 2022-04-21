@@ -1,6 +1,7 @@
 package com.example.aucademics.databases.DepartmentResourceDatabase;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.Nullable;
 

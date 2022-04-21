@@ -50,18 +50,13 @@ public class EnterDetails extends AppCompatActivity {
         tokenSPEditor = tokenSP.edit();
         tokenSPEditor.putBoolean("token",false);
 
-        boolean completedDetails = tokenSP.getBoolean("token",false);
-        System.out.println("compDet: "+completedDetails);
-        if(completedDetails){
-            finish();
-            startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
-        }
-
         semesterGet = findViewById(R.id.s_semester);
         departmentGet = findViewById(R.id.s_department);
         regulationGet = findViewById(R.id.s_regulations);
         BunkManagerDBHelper db = new BunkManagerDBHelper(EnterDetails.this,"userBunkDB",null,1);
         db.close();
+        boolean completedDetails = tokenSP.getBoolean("token",false);
+        //System.out.println("compDet: "+completedDetails);
 
         AlertDialog.Builder alert3 = new AlertDialog.Builder(this);
         alert3.setTitle("T&C");
@@ -87,9 +82,12 @@ public class EnterDetails extends AppCompatActivity {
                 finish();
             }
         });
-
-        alert3.show();
-
+        if(!completedDetails){
+        alert3.show();}
+        if(completedDetails){
+            finish();
+            startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
+        }
 
 
         submitDetails.setOnClickListener(new View.OnClickListener() {
@@ -106,19 +104,19 @@ public class EnterDetails extends AppCompatActivity {
                 tokenSPEditor.putString("department",userDepartment);
                 tokenSPEditor.putString("semester",userSemester);
                 tokenSPEditor.commit();
-
+                //TODO: be able to reset details access
                 DepartmentDetailsAccess detailsAccess = DepartmentDetailsAccess.getInstance(getBaseContext());
                 detailsAccess.open();
                 bunkItemArrayList = detailsAccess.getSubjectsForBunk(userRegulation,userDepartment,userSemester);
                 gpaItemArrayList = detailsAccess.getSubjectsForBigBadTable(userRegulation,userDepartment,userSemester);
                 detailsAccess.close();
-                System.out.println("list: "+bunkItemArrayList);
+                //System.out.println("list: "+bunkItemArrayList);
                 BunkManagerDBHelper db = new BunkManagerDBHelper(EnterDetails.this,"userBunkDB",null,1);
                 db.upgrade();
                 db.initialize(bunkItemArrayList);
                 db.close();
                 BigBadCGPATableDBHelper db2 = new BigBadCGPATableDBHelper(EnterDetails.this);
-                System.out.println("gpa item array list in enter details: "+ gpaItemArrayList);
+                //System.out.println("gpa item array list in enter details: "+ gpaItemArrayList);
                 db2.deleteTable();
                 db2.initialize(gpaItemArrayList);
                 db2.close();

@@ -20,6 +20,7 @@ public class DepartmentDetailsAccess {
         this.openHelper = new DepartmentDetailsOpenHelper(context);
     }
 
+
     public static DepartmentDetailsAccess getInstance(Context context){
         if(instance== null){
             instance = new DepartmentDetailsAccess(context);

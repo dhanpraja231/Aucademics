@@ -21,7 +21,7 @@
     <item
         android:id="@+id/help_nav"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:title="Help" />
+        android:title="FAQ and Team" />
     <item
         android:id="@+id/playstore_redirect"
         android:icon="@android:drawable/btn_star"

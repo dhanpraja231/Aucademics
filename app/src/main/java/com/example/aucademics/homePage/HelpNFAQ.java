@@ -5,10 +5,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.TextView;
 
 import com.example.aucademics.R;
 
@@ -19,12 +22,14 @@ public class HelpNFAQ extends AppCompatActivity {
     RecyclerView rv;
     ArrayList<faqItem> dataList;
     HelpPageRVAdapter rvAdapter;
+    TextView contact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_n_faq);
         tBar = findViewById(R.id.help_n_faq_toolbar);
         rv = findViewById(R.id.faq_rv);
+        contact = findViewById(R.id.helpFaqContact_tv);
         tBar.setNavigationIcon(getDrawable(R.drawable.ic_baseline_arrow_back_24));
         tBar.setTitle("FAQ");
         tBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -32,13 +37,13 @@ public class HelpNFAQ extends AppCompatActivity {
             public void onClick(View v) {
                 finish();
                 onBackPressed();
-
-                //What to do on back clicked
             }
         });
         dataList = new ArrayList<>();
         dataList.add(new faqItem("Will moving to previous/next semester clear ALL my data?","NO, moving to another semester will only clear your existing" +
                 " attendance data of the current semester. Your CGPA data will persist"));
+        dataList.add(new faqItem("I have selected incorrect department/regulation","Use wipe data to start over again. It will take you to the start page where you may enter " +
+                "your details again. NOTE: current data will be lost" ));
         dataList.add(new faqItem("Will the wipe data option clear ALL my data?","YES, wipe data will clear all data including attendance AND CGPA. " +
                 "You may also accomplish this by clearing the storage of this app in settings"));
         dataList.add(new faqItem("I have mistakenly entered CGPA data for a semester, I am unable to clear it. How to keep it from affecting my overall cgpa calculation?",
@@ -55,17 +60,24 @@ public class HelpNFAQ extends AppCompatActivity {
                         "Adithya.D ECE'23\n" +
                         "Ajmitra.M IBT'23\n" +
                         "Saranya.R ECE'23\n" +
-                        "Vikesh.K IE'23\n" +
+                        "Vikeesh.K IE'23\n" +
                         "Yashaswini.M ECE'23\n" +
                         "Omar.H CSE'23\n" +
-                        "Aditya.J.S ECE'23\n" +
-                        "Rohit MtSc'23\n" +
-                        "Saranya MNE'25\n" +
-                        "John Civil'23"));
+                        "Adithyaa.J.S ECE'23\n" +
+                        "Rohit.G MtSc'23\n" +
+                        "Saranya.G MNE'25\n" +
+                        "John.P Civil'23"));
 
         rvAdapter = new HelpPageRVAdapter(dataList);
         rv.setAdapter(rvAdapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
+
+        contact.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri data = Uri.parse("mailto:aucadev@gmail.com?subject=");
+            intent.setData(data);
+            startActivity(intent);
+        });
 
 
     }

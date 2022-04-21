@@ -18,6 +18,11 @@
 
         <!--ImageVIew to display our Course Image-->
         <!--Text View to display Course Name-->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20sp"
+            >
         <TextView
             android:id="@+id/subject_rv_subject_name"
             android:layout_width="wrap_content"
@@ -29,6 +34,7 @@
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
+        </HorizontalScrollView>>
 
 
         <TextView

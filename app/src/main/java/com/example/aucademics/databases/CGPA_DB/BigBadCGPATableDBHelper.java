@@ -111,11 +111,13 @@ public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
         return s;
     }
 
-    public Double calculateGpaOfSemester(Integer semester){
+    public Double[] calculateGpaOfSemester(Integer semester){
+        Double[] mResult = new Double[2];
         String query = "SELECT grade,credits FROM "+BigBadCgpaEntries.TABLE_NAME+" WHERE "+ BigBadCgpaEntries.COLUMN_SEMESTER+" = "+ semester;
         Cursor c = db.rawQuery(query,null);
         Integer cumulativeGrade=0;
         Integer cumulativeCredits=0;
+
         Integer currentGrade;
         Integer currentCredits;
         while(c.moveToNext()){
@@ -132,14 +134,18 @@ public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
                     cumulativeCredits += currentCredits;
                 }
             }
-
         }
+
         if(cumulativeCredits==0){
-            return null;
+            mResult[1] = 0.0;
+            return mResult;
         }
         double result = (double)cumulativeGrade/(double)cumulativeCredits;
         System.out.println("sem "+semester+" gpa ="+ result);
-        return result;
+        mResult[0] = result;
+        mResult[1] = Double.parseDouble(String.valueOf(cumulativeCredits));
+
+        return mResult;
 
     }
 }

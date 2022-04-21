@@ -31,19 +31,19 @@ public class CgpaFragment extends Fragment {
         ArrayList<SemesterItem> tileData = new ArrayList<>();
         BigBadCGPATableDBHelper db = new BigBadCGPATableDBHelper(this.getContext());
 
-        Integer semestersAccounted=0;
+        Double creditsAccounted=0.0;
         Double cgpaCumulative=0.0;
         for(int i =1;i<=8;i++){
-            Double cgpa = db.calculateGpaOfSemester(i);
+            Double cgpa = db.calculateGpaOfSemester(i)[0];
             if(cgpa!=null){
             cgpa = round(cgpa,3);
-            cgpaCumulative +=cgpa;
-            semestersAccounted++;}
+            cgpaCumulative += cgpa*db.calculateGpaOfSemester(i)[1];
+            creditsAccounted+= db.calculateGpaOfSemester(i)[1];}
             tileData.add(new SemesterItem(i,cgpa));
         }
         db.close();
-        if(semestersAccounted!=0){
-            double result = (double)cgpaCumulative/(double)semestersAccounted;
+        if(creditsAccounted!=0){
+            double result = (double)cgpaCumulative/(double)creditsAccounted;
             result = round(result,3);
             mFinalGpa.setText(String.valueOf(result));
         }
