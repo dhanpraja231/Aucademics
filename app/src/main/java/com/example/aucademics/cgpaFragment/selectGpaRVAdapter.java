@@ -32,7 +32,6 @@ public class selectGpaRVAdapter extends RecyclerView.Adapter<selectGpaRVAdapter.
         this.dataList = dataList;
         this.context = context;
     }
-    //TODO: redirect to G play
 
     @NonNull
     @Override

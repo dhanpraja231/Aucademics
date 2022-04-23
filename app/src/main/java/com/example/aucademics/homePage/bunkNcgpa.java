@@ -246,7 +246,6 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
             case R.id.playstore_redirect:
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.aucadevs.aucademics&reviewId=0"));
                 startActivity(intent);
-                //TODO: redirect to playstore app via explicit intent
                 break;
             case R.id.help_nav:
                 startActivity(new Intent(bunkNcgpa.this, HelpNFAQ.class));
