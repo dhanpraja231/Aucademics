@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
@@ -243,6 +244,8 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                 break;
 
             case R.id.playstore_redirect:
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.aucadevs.aucademics&reviewId=0"));
+                startActivity(intent);
                 //TODO: redirect to playstore app via explicit intent
                 break;
             case R.id.help_nav:

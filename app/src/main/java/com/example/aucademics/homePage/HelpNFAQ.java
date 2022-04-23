@@ -44,6 +44,8 @@ public class HelpNFAQ extends AppCompatActivity {
                 " attendance data of the current semester. Your CGPA data will persist"));
         dataList.add(new faqItem("I have selected incorrect department/regulation","Use wipe data to start over again. It will take you to the start page where you may enter " +
                 "your details again. NOTE: current data will be lost" ));
+        dataList.add(new faqItem("How to increment bunks for labs and other 4 hour block subjects","The answer is obvious. Every time you bunk a lab, increment 4 " +
+                "skips in the bunk manager for that particular subject" ));
         dataList.add(new faqItem("Will the wipe data option clear ALL my data?","YES, wipe data will clear all data including attendance AND CGPA. " +
                 "You may also accomplish this by clearing the storage of this app in settings"));
         dataList.add(new faqItem("I have mistakenly entered CGPA data for a semester, I am unable to clear it. How to keep it from affecting my overall cgpa calculation?",
@@ -71,7 +73,6 @@ public class HelpNFAQ extends AppCompatActivity {
         rvAdapter = new HelpPageRVAdapter(dataList);
         rv.setAdapter(rvAdapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
-
         contact.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri data = Uri.parse("mailto:aucadev@gmail.com?subject=");

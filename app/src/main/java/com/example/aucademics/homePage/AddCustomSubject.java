@@ -54,7 +54,7 @@ public class AddCustomSubject extends AppCompatActivity {
                 String subName = mSubjectName.getText().toString();
                 String totalHours = mTotalHours.getText().toString();
                 //String credits = mCredits.getText().toString();
-                String regex = "[0-9]";
+                String regex = "^[0-9]*$";
                 if(subName.isEmpty()){
                     Toast.makeText(AddCustomSubject.this,"invalid subject name",Toast.LENGTH_SHORT).show();
                 }
@@ -62,8 +62,8 @@ public class AddCustomSubject extends AppCompatActivity {
                     Toast.makeText(AddCustomSubject.this,"invalid total hours",Toast.LENGTH_SHORT).show();
                 }
 
-                else if(Integer.parseInt( totalHours)<30 && Integer.parseInt((totalHours))%15!=0){
-                    Toast.makeText(AddCustomSubject.this,"hours must be >=30 and multiple of 15",Toast.LENGTH_SHORT).show();
+                else if(Integer.parseInt( totalHours)<30 || Integer.parseInt( totalHours)>240 || Integer.parseInt((totalHours))%15!=0){
+                    Toast.makeText(AddCustomSubject.this,"hours must be between 30-240 and multiple of 15",Toast.LENGTH_SHORT).show();
                 }
 
                 else{
