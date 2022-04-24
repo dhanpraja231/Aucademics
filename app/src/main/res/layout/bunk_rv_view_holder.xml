@@ -18,37 +18,30 @@
 
         <!--ImageVIew to display our Course Image-->
         <!--Text View to display Course Name-->
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20sp"
-            >
-        <TextView
-            android:id="@+id/bunk_rv_subject_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10sp"
-            android:layout_marginTop="10sp"
-            android:singleLine="true"
-            android:text="Subject name"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
 
-        </HorizontalScrollView>
+            <TextView
+                android:id="@+id/bunk_rv_subject_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="10sp"
+                android:singleLine="true"
+                android:text="Subject name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         <!--Text VIew to display COurse Rating-->
         <!--Image used in present in drawable folder-->
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bunk_holder_increment_button"
             android:layout_width="60sp"
             android:layout_height="60sp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="45sp"
             android:layout_marginEnd="25sp"
-            android:layout_marginTop="35sp"
             android:text="+"
             android:textSize="30sp" />
 
@@ -56,10 +49,10 @@
             android:id="@+id/bunk_holder_decrement_button"
             android:layout_width="60sp"
             android:layout_height="60sp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="45sp"
             android:layout_marginEnd="93sp"
-            android:layout_marginTop="35sp"
             android:text="-"
             android:textSize="30sp" />
 

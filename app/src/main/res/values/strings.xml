@@ -38,6 +38,7 @@
         <item>Printing</item>
         <item>Production</item>
         <item>RPT</item>
+        <item>Textile</item>
 
     </string-array>
     <string-array name="grades">

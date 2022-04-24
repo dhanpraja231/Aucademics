@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -81,6 +82,10 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         Integer oldTotalHours =Integer.parseInt(c.getString(0));
         Integer oldBunkCount =Integer.parseInt(c.getString(1));
         Integer oldBunksLeft =Integer.parseInt(c.getString(2));
+        if(oldTotalHours==0){
+            return;
+        }
+
         ContentValues cv = new ContentValues();
         cv.put("Bunked_hours",oldBunkCount+1);
         cv.put("Bunks_left",oldBunksLeft-1);
@@ -100,6 +105,9 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         Integer oldBunkCount =Integer.parseInt(c.getString(1));
         Integer oldBunksLeft =Integer.parseInt(c.getString(2));
         c.close();
+        if(oldTotalHours==0){
+            return;
+        }
         if(oldBunkCount-1 >= 0) {
             ContentValues cv = new ContentValues();
             cv.put("Bunked_hours", oldBunkCount - 1);

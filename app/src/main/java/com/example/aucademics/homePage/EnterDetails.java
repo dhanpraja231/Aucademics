@@ -104,8 +104,10 @@ public class EnterDetails extends AppCompatActivity {
                 tokenSPEditor.putString("department",userDepartment);
                 tokenSPEditor.putString("semester",userSemester);
                 tokenSPEditor.commit();
-                //TODO: be able to reset details access
                 DepartmentDetailsAccess detailsAccess = DepartmentDetailsAccess.getInstance(getBaseContext());
+                detailsAccess.refresh(EnterDetails.this);
+
+                //do it here
                 detailsAccess.open();
                 bunkItemArrayList = detailsAccess.getSubjectsForBunk(userRegulation,userDepartment,userSemester);
                 gpaItemArrayList = detailsAccess.getSubjectsForBigBadTable(userRegulation,userDepartment,userSemester);

@@ -16,13 +16,15 @@ import java.util.ArrayList;
 
 public class BunkFragment extends Fragment {
     RecyclerView rvBunkList;
-
+//TODO: weird bug with scrollview
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.bunk_fragment, container, false);
         rvBunkList = root.findViewById(R.id.rv_bunk_list);
         BunkManagerDBHelper db = new BunkManagerDBHelper(this.getContext(),"userBunkDB",null,1);
         ArrayList<BunkItem> data = db.getAllSubjects();
         //System.out.println("Datalist ="+ data);
+        //clean subjects where total hours = 0
+
         bunkRVAdapter rvListAdapter = new bunkRVAdapter(data);
         rvBunkList.setAdapter(rvListAdapter);
         rvBunkList.setLayoutManager(new LinearLayoutManager(this.getContext()));

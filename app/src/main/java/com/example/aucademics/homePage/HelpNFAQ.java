@@ -6,11 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.TextView;
 
 import com.example.aucademics.R;
@@ -60,13 +58,13 @@ public class HelpNFAQ extends AppCompatActivity {
                 "Hemalatha.M IT'23\n" +
                         "Harsh.S EEE'23\n" +
                         "Adithya.D ECE'23\n" +
-                        "Ajmitra.M IBT'23\n" +
+                        "Ajmitra.G IBT'23\n" +
                         "Saranya.R ECE'23\n" +
                         "Vikeesh.K IE'23\n" +
                         "Yashaswini.M ECE'23\n" +
                         "Omar.H CSE'23\n" +
                         "Adithyaa.J.S ECE'23\n" +
-                        "Rohit.G MtSc'23\n" +
+                        "Rohith.G MtSc'23\n" +
                         "Saranya.G MNE'25\n" +
                         "John.P Civil'23"));
 

@@ -28,7 +28,16 @@ public class DepartmentDetailsAccess {
         return instance;
     }
 
+    public DepartmentDetailsAccess refresh(Context context){
+        instance = null;
+        instance = new DepartmentDetailsAccess(context);
+        return instance;
+    }
+
+
     public void open(){
+
+
         this.db = openHelper.getWritableDatabase();
     }
     public void close(){

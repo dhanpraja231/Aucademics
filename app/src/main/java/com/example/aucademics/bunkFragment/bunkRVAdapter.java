@@ -59,7 +59,6 @@ public class bunkRVAdapter extends RecyclerView.Adapter<bunkRVAdapter.bunkViewHo
 
                     BunkManagerDBHelper db = new BunkManagerDBHelper(itemView.getContext(),1);
                     int _id = getAdapterPosition();
-
                     db.decrementSubject(_id);
                     dataList = db.getAllSubjects();
                     notifyDataSetChanged();
