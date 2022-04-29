@@ -36,8 +36,6 @@ public class DepartmentDetailsAccess {
 
 
     public void open(){
-
-
         this.db = openHelper.getWritableDatabase();
     }
     public void close(){

@@ -46,7 +46,7 @@ public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
 
     public void initialize(ArrayList<gpaItem> ar){
         SQLiteDatabase db = this.getWritableDatabase();
-        System.out.println("data list in big bad helper class "+ ar);
+        //System.out.println("data list in big bad helper class "+ ar);
         for(gpaItem i: ar){
             ContentValues cv = new ContentValues();
             cv.put(BigBadCgpaEntries.COLUMN_SUBJECT,i.getSubjectName());
@@ -74,7 +74,7 @@ public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
                 result.add(new gpaItem(Integer.parseInt(c.getString(0)), c.getString(1),c.getString(2),Integer.parseInt(c.getString(3)),Integer.parseInt(c.getString(5))));
             }
         }
-        System.out.println("result set from get semester data:  "+result);
+        //System.out.println("result set from get semester data:  "+result);
 
         db.close();
         c.close();
@@ -141,7 +141,7 @@ public class BigBadCGPATableDBHelper extends SQLiteOpenHelper {
             return mResult;
         }
         double result = (double)cumulativeGrade/(double)cumulativeCredits;
-        System.out.println("sem "+semester+" gpa ="+ result);
+        //System.out.println("sem "+semester+" gpa ="+ result);
         mResult[0] = result;
         mResult[1] = Double.parseDouble(String.valueOf(cumulativeCredits));
 

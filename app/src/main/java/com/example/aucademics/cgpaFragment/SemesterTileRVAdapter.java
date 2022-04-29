@@ -84,11 +84,9 @@ public class SemesterTileRVAdapter extends RecyclerView.Adapter<SemesterTileRVAd
                     SharedPreferences.Editor spEditor = sp.edit();
                     String semesterText =  mSemesterNo.getText().toString();
                     Integer semesterNo = Integer.parseInt(semesterText.substring(semesterText.length()-1));
-                    System.out.println("put semester no "+semesterNo+" in shared preference");
+                    //System.out.println("put semester no "+semesterNo+" in shared preference");
                     spEditor.putInt("semesterClicked" ,semesterNo);
                     spEditor.commit();
-
-
                     Intent intent = new Intent (view.getContext(), SelectGpaActivity.class);
                     view.getContext().startActivity(intent);
                     ((Activity)context).finish();

@@ -58,7 +58,7 @@ public class AddCustomSubject extends AppCompatActivity {
                 if(subName.isEmpty()){
                     Toast.makeText(AddCustomSubject.this,"invalid subject name",Toast.LENGTH_SHORT).show();
                 }
-                else if(!totalHours.matches(regex)){
+                else if(tryParse(totalHours)==null|| !totalHours.matches(regex)){
                     Toast.makeText(AddCustomSubject.this,"invalid total hours",Toast.LENGTH_SHORT).show();
                 }
 
@@ -77,5 +77,12 @@ public class AddCustomSubject extends AppCompatActivity {
         });
 
 
+    }
+    public static Integer tryParse(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 }

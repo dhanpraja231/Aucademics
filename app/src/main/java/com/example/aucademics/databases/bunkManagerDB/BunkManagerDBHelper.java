@@ -83,6 +83,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         Integer oldBunkCount =Integer.parseInt(c.getString(1));
         Integer oldBunksLeft =Integer.parseInt(c.getString(2));
         if(oldTotalHours==0){
+            db.close();
             return;
         }
 
@@ -106,6 +107,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         Integer oldBunksLeft =Integer.parseInt(c.getString(2));
         c.close();
         if(oldTotalHours==0){
+            db.close();
             return;
         }
         if(oldBunkCount-1 >= 0) {
@@ -115,6 +117,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
             float attendancePercent = (float) ((oldTotalHours - oldBunkCount) / (float) (oldTotalHours)) * 100.0f;
             cv.put("Attendance_percent", attendancePercent);
             db.update(BunkEntries.TABLE_NAME, cv, "_id=?", new String[]{String.valueOf(id)});
+            db.close();
             return;
         }
         db.close();
@@ -128,7 +131,7 @@ public class BunkManagerDBHelper extends SQLiteOpenHelper {
         while(c.moveToNext()){
             result.add(new BunkItem(c.getString(1),c.getString(2),c.getString(3)));
         }
-        System.out.println("GATE "+result);
+        //System.out.println("GATE "+result);
         db.close();
         c.close();
         return result;
