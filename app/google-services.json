@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "111107200405",
+    "project_id": "aucademics",
+    "storage_bucket": "aucademics.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111107200405:android:e38d81800b7b593727929c",
+        "android_client_info": {
+          "package_name": "com.aucadevs.aucademics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111107200405-tqhsqvsm477l7a781su4ns8lsk7318rk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5yaCZOmeKgv9kVpWRiIILkemdUJhclZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111107200405-tqhsqvsm477l7a781su4ns8lsk7318rk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

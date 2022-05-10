@@ -41,6 +41,7 @@ public class EnterDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.enter_details);
+        findViewById(R.id.enterDetailsLoadingPanel).setVisibility(View.GONE);
         regulationGet = findViewById(R.id.s_regulations);
         departmentGet = findViewById(R.id.s_department);
         semesterGet = findViewById(R.id.s_semester);
@@ -94,6 +95,7 @@ public class EnterDetails extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                findViewById(R.id.enterDetailsLoadingPanel).setVisibility(View.VISIBLE);
                 userSemester = semesterGet.getSelectedItem().toString();
                 userRegulation = regulationGet.getSelectedItem().toString();
                 userDepartment = departmentGet.getSelectedItem().toString();
@@ -124,7 +126,7 @@ public class EnterDetails extends AppCompatActivity {
                 db2.close();
 
                 //db.open();
-
+                findViewById(R.id.enterDetailsLoadingPanel).setVisibility(View.GONE);
                 startActivity(new Intent(EnterDetails.this, bunkNcgpa.class));
                 finish();
             }

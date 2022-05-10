@@ -75,8 +75,6 @@ public class AddCustomSubject extends AppCompatActivity {
                 }
             }
         });
-
-
     }
     public static Integer tryParse(String text) {
         try {

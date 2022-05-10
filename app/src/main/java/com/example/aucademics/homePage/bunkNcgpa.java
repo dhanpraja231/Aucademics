@@ -1,6 +1,7 @@
 package com.example.aucademics.homePage;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -28,12 +30,11 @@ import com.example.aucademics.databases.bunkManagerDB.BunkManagerDBHelper;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-
-//2)implement navbar
-//3)create shared tables
-//4)create FAQ page
 
 public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -43,11 +44,42 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
     SharedPreferences.Editor tokenSPEditor;
     TabLayout tabLayout;
     ViewPager2 viewPager;
+    FirebaseDatabase fbdb;
+    DatabaseReference firebaseUserData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
+        // Send
+        // department and semester data to firebase on creation and set firebaseDepartmentCollected shared
+        // preference
+        // if shared preference not set. else don't send data to firebase
+        tokenSP = PreferenceManager.getDefaultSharedPreferences(this);
+        tokenSPEditor = tokenSP.edit();
+        fbdb = FirebaseDatabase.getInstance();
+
+
+        //update data in firebase if not updated
+        //if(!tokenSP.getBoolean("dataInFirebase",true)){
+            firebaseUserData = fbdb.getReference(Settings.Secure.getString(this.getContentResolver(),
+                    Settings.Secure.ANDROID_ID));
+            firebaseUserData.child("regulations").setValue(tokenSP.getString("regulations","f"));
+            firebaseUserData.child("department").setValue(tokenSP.getString("department","f"));
+            firebaseUserData.child("semester").setValue(tokenSP.getString("semester","f"),new DatabaseReference.CompletionListener(){
+
+                @Override
+                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                    Toast.makeText(bunkNcgpa.this,"firebase successful",Toast.LENGTH_SHORT);
+                    tokenSPEditor.putBoolean("dataInFirebase",true);
+                    tokenSPEditor.commit();
+                    tokenSPEditor.clear();
+                }
+            });
+        //}
+
+
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_Bar);
         navToolBar = findViewById(R.id.tool_bar);
@@ -107,7 +139,11 @@ public class bunkNcgpa extends AppCompatActivity implements NavigationView.OnNav
                         tokenSP = PreferenceManager.getDefaultSharedPreferences(bunkNcgpa.this);
                         tokenSPEditor = tokenSP.edit();
                         tokenSPEditor.putBoolean("token",false);
+
+                        //TODO: delete firebase data and clear firebaseDepartmentCollected shared preference
+
                         tokenSPEditor.commit();
+
                         finish();
                         startActivity(new Intent(bunkNcgpa.this, EnterDetails.class));
                     }
